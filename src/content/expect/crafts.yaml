@@ -1,0 +1,22 @@
+# PLACEHOLDER expect card — status: draft. Image is a local placeholder.
+order: 3
+status: draft
+isKids: false
+icon: construction
+title:
+  # DRAFT-BG: needs native review
+  bg: 'Антични занаяти'
+  en: 'Ancient Crafts'
+description:
+  # DRAFT-BG: needs native review
+  bg: 'Работилници по ковачество, монети, керамика (заместител).'
+  en: 'Hands-on blacksmithing, coin minting, pottery & mosaic workshops.'
+tag:
+  # DRAFT-BG: needs native review
+  bg: 'Работилници'
+  en: 'Workshops'
+image: ../../assets/images/expect/crafts.jpg
+alt:
+  # DRAFT-BG: needs native review
+  bg: 'Заместител на снимка за „Антични занаяти“ — не е реална фестивална фотография'
+  en: 'Placeholder image for "Ancient Crafts" — not real festival photography'

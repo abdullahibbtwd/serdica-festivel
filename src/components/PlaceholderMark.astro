@@ -1,0 +1,14 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import { showDrafts } from '../lib/drafts';
+
+interface Props {
+	lang: Lang;
+	show?: boolean;
+}
+
+const { lang, show = true } = Astro.props;
+---
+
+{showDrafts() && show && <span class="placeholder-marker">{t(lang, 'placeholder.marker')}</span>}

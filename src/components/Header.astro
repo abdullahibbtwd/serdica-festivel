@@ -1,0 +1,186 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import BrandLogo from './BrandLogo.astro';
+import LangSwitch from './LangSwitch.astro';
+
+interface Props {
+	lang: Lang;
+	pathname: string;
+	showFreeAdmission?: boolean;
+}
+
+const { lang, pathname, showFreeAdmission = false } = Astro.props;
+
+const links = [
+	{ href: `/${lang}/programme/`, key: 'nav.programme' as const, icon: 'calendar-month' },
+	{ href: `/${lang}/#locations`, key: 'nav.locations' as const, icon: 'explore' },
+	{ href: `/${lang}/#about`, key: 'nav.about' as const, icon: 'history-edu' },
+	{ href: `/${lang}/#gallery`, key: 'nav.gallery' as const, icon: 'photo-library' },
+	{ href: `/${lang}/#partners`, key: 'nav.partners' as const, icon: 'handshake' },
+	{ href: `/${lang}/#contact`, key: 'nav.contact' as const, icon: 'mail' },
+];
+
+const isProgramme = pathname.includes('/programme');
+---
+
+<header
+	class="bg-surface/95 backdrop-blur-sm sticky top-0 z-50 shadow-sm border-b border-outline-variant/30"
+>
+	<div class="flex justify-between items-center w-full px-4 md:px-margin max-w-7xl mx-auto h-20">
+		<a
+			class="flex items-center gap-space-sm group min-w-0"
+			href={`/${lang}/`}
+			aria-label={t(lang, 'brand.name')}
+		>
+			<BrandLogo size={52} class="group-hover:scale-105 motion-safe:transition-transform" />
+			<span class="hidden sm:flex flex-col min-w-0" aria-hidden="true">
+				<span class="text-headline-sm text-primary tracking-wide uppercase font-bold truncate">
+					{t(lang, 'brand.name')}
+				</span>
+				<span class="text-[12px] uppercase tracking-widest text-secondary font-bold -mt-0.5">
+					{t(lang, 'brand.subtitle')}
+				</span>
+			</span>
+		</a>
+
+		<nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label={t(lang, 'nav.ariaLabel')}>
+			{
+				links.map((link) => {
+					const active = link.key === 'nav.programme' && isProgramme;
+					return (
+						<a
+							href={link.href}
+							class:list={[
+								'pb-1 transition-colors text-label-md',
+								active
+									? 'text-primary border-b-2 border-primary font-bold'
+									: 'text-on-surface-variant hover:text-primary',
+							]}
+						>
+							{t(lang, link.key)}
+						</a>
+					);
+				})
+			}
+		</nav>
+
+		<div class="flex items-center gap-space-md shrink-0">
+			{
+				showFreeAdmission && (
+					<div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded bg-badge-free text-on-background font-bold text-label-sm tracking-wide shadow-sm">
+						<Icon name="material-symbols:stars" class="text-sm" aria-hidden="true" />
+						<span>{t(lang, 'admission.free')}</span>
+					</div>
+				)
+			}
+			<div class="hidden sm:block px-3 py-1.5 rounded bronze-border">
+				<LangSwitch lang={lang} pathname={pathname} />
+			</div>
+			<button
+				type="button"
+				id="menu-btn"
+				class="md:hidden p-2 text-on-surface hover:text-primary transition-colors"
+				aria-label={t(lang, 'nav.openMenu')}
+				aria-expanded="false"
+				aria-controls="nav-drawer"
+			>
+				<Icon name="material-symbols:menu" class="text-2xl" aria-hidden="true" />
+			</button>
+		</div>
+	</div>
+</header>
+
+<aside
+	id="nav-drawer"
+	class="fixed inset-y-0 right-0 w-80 max-w-full z-50 bg-surface shadow-lg border-l border-outline-variant/30 flex flex-col h-full p-space-lg gap-space-md transition-transform duration-300 translate-x-full"
+	aria-hidden="true"
+>
+	<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/30">
+		<div class="flex items-center gap-2">
+			<BrandLogo size={40} />
+			<span class="text-headline-md text-primary uppercase tracking-wider font-bold">
+				{t(lang, 'brand.short')}
+			</span>
+		</div>
+		<button
+			type="button"
+			id="close-drawer"
+			class="p-1 text-on-surface-variant hover:text-primary transition-colors"
+			aria-label={t(lang, 'nav.closeMenu')}
+		>
+			<Icon name="material-symbols:close" class="text-2xl" aria-hidden="true" />
+		</button>
+	</div>
+	<nav class="flex flex-col gap-2 mt-2 flex-1" aria-label={t(lang, 'nav.ariaLabel')}>
+		{
+			links.map((link) => (
+				<a
+					class="nav-drawer-link flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface hover:bg-surface-container-low transition-colors text-label-md"
+					href={link.href}
+				>
+					<Icon name={`material-symbols:${link.icon}`} aria-hidden="true" />
+					<span>{t(lang, link.key)}</span>
+				</a>
+			))
+		}
+	</nav>
+	<div class="mt-auto pt-4 border-t border-outline-variant/30 space-y-3">
+		{
+			showFreeAdmission && (
+				<div class="px-3 py-2 rounded bg-badge-free text-on-background font-bold text-label-sm text-center">
+					{t(lang, 'admission.free')}
+				</div>
+			)
+		}
+		<LangSwitch lang={lang} pathname={pathname} />
+	</div>
+</aside>
+
+<div id="drawer-backdrop" class="fixed inset-0 bg-inverse-surface/60 backdrop-blur-sm z-40 hidden transition-opacity" hidden>
+</div>
+
+<script>
+	const menuBtn = document.getElementById('menu-btn');
+	const closeBtn = document.getElementById('close-drawer');
+	const drawer = document.getElementById('nav-drawer');
+	const backdrop = document.getElementById('drawer-backdrop');
+	const links = document.querySelectorAll('.nav-drawer-link');
+
+	function openDrawer() {
+		if (!drawer || !backdrop || !menuBtn) return;
+		drawer.classList.remove('translate-x-full');
+		drawer.setAttribute('aria-hidden', 'false');
+		backdrop.classList.remove('hidden');
+		backdrop.removeAttribute('hidden');
+		menuBtn.setAttribute('aria-expanded', 'true');
+		document.body.classList.add('overflow-hidden');
+		document.getElementById('main')?.setAttribute('inert', '');
+		document.querySelector('footer')?.setAttribute('inert', '');
+		closeBtn?.focus();
+	}
+
+	function closeDrawer() {
+		if (!drawer || !backdrop || !menuBtn) return;
+		drawer.classList.add('translate-x-full');
+		drawer.setAttribute('aria-hidden', 'true');
+		backdrop.classList.add('hidden');
+		backdrop.setAttribute('hidden', '');
+		menuBtn.setAttribute('aria-expanded', 'false');
+		document.body.classList.remove('overflow-hidden');
+		document.getElementById('main')?.removeAttribute('inert');
+		document.querySelector('footer')?.removeAttribute('inert');
+		menuBtn.focus();
+	}
+
+	menuBtn?.addEventListener('click', openDrawer);
+	closeBtn?.addEventListener('click', closeDrawer);
+	backdrop?.addEventListener('click', closeDrawer);
+	links.forEach((link) => link.addEventListener('click', closeDrawer));
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape' && menuBtn?.getAttribute('aria-expanded') === 'true') {
+			closeDrawer();
+		}
+	});
+</script>

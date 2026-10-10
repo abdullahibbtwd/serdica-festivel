@@ -1,0 +1,126 @@
+---
+import '@fontsource-variable/eb-garamond/wght.css';
+import '@fontsource-variable/eb-garamond/wght-italic.css';
+import '@fontsource-variable/inter/wght.css';
+import '../styles/global.css';
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { Lang } from '../i18n/ui';
+import { getLocalizedPath, t } from '../i18n/utils';
+import type { UiKey } from '../i18n/ui';
+
+interface FestivalData {
+	edition: string;
+	dates?: { bg: string; en: string };
+	admission: 'unknown' | 'free' | 'paid';
+	email: string;
+	facebook?: string;
+	hero: {
+		title: { bg: string; en: string };
+		tagline: { bg: string; en: string };
+	};
+	stats: {
+		participants: number;
+		countries: number;
+		days?: number;
+	};
+}
+
+interface Props {
+	lang: Lang;
+	titleKey: UiKey;
+	descriptionKey: UiKey;
+	festival: FestivalData;
+}
+
+const { lang, titleKey, descriptionKey, festival } = Astro.props;
+const title = t(lang, titleKey);
+const description = t(lang, descriptionKey);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const alternateBg = new URL(getLocalizedPath(Astro.url.pathname, 'bg'), Astro.site);
+const alternateEn = new URL(getLocalizedPath(Astro.url.pathname, 'en'), Astro.site);
+const ogImage = new URL('/og/default.svg', Astro.site);
+
+const eventJsonLd: Record<string, unknown> = {
+	'@context': 'https://schema.org',
+	'@type': 'Event',
+	name: festival.hero.title[lang],
+	description: festival.hero.tagline[lang],
+	eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+	eventStatus: 'https://schema.org/EventScheduled',
+	image: [ogImage.href],
+	organizer: {
+		'@type': 'Organization',
+		name: t(lang, 'brand.name'),
+		url: Astro.site?.href,
+		email: festival.email,
+	},
+	location: {
+		'@type': 'Place',
+		name: festival.hero.title[lang],
+		address: {
+			'@type': 'PostalAddress',
+			addressLocality: t(lang, 'seo.city'),
+			addressCountry: 'BG',
+		},
+	},
+	isAccessibleForFree: festival.admission === 'free',
+	inLanguage: [lang === 'bg' ? 'bg-BG' : 'en-GB'],
+};
+
+if (festival.dates) {
+	eventJsonLd.startDate = festival.dates[lang];
+}
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+
+		<link rel="canonical" href={canonicalURL.href} />
+		<link rel="alternate" hreflang="bg" href={alternateBg.href} />
+		<link rel="alternate" hreflang="en" href={alternateEn.href} />
+		<link rel="alternate" hreflang="x-default" href={alternateBg.href} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={t(lang, 'brand.name')} />
+		<meta property="og:locale" content={lang === 'bg' ? 'bg_BG' : 'en_GB'} />
+		<meta property="og:locale:alternate" content={lang === 'bg' ? 'en_GB' : 'bg_BG'} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL.href} />
+		<meta property="og:image" content={ogImage.href} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage.href} />
+
+		<script type="application/ld+json" set:html={JSON.stringify(eventJsonLd)} />
+	</head>
+	<body class="bg-background text-on-background antialiased flex flex-col min-h-screen">
+		<a class="skip-link" href="#main">{t(lang, 'skip.toContent')}</a>
+		<Header
+			lang={lang}
+			pathname={Astro.url.pathname}
+			showFreeAdmission={festival.admission === 'free'}
+		/>
+		<main id="main" class="flex-grow w-full max-w-[100vw] overflow-x-hidden">
+			<slot />
+		</main>
+		<Footer
+			lang={lang}
+			pathname={Astro.url.pathname}
+			email={festival.email}
+			showFreeAdmission={festival.admission === 'free'}
+		/>
+	</body>
+</html>

@@ -1,0 +1,13 @@
+# PLACEHOLDER gallery entry — rightsConfirmed: false
+order: 1
+rightsConfirmed: false
+src: ../../assets/images/gallery/01-legionaries.jpg
+alt:
+  # DRAFT-BG: needs native review
+  bg: 'Заместител на галерийна снимка 1 — не е реална фестивална фотография'
+  en: 'Placeholder gallery image 1 — not real festival photography'
+caption:
+  # DRAFT-BG: needs native review
+  bg: 'Заместител 1'
+  en: 'Placeholder 1'
+credit: 'Placeholder'

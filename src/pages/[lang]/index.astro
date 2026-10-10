@@ -1,0 +1,150 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import ExpectGrid from '../../components/ExpectGrid.astro';
+import Highlights from '../../components/Highlights.astro';
+import Locations from '../../components/Locations.astro';
+import About from '../../components/About.astro';
+import Gallery from '../../components/Gallery.astro';
+import Partners from '../../components/Partners.astro';
+import Contact from '../../components/Contact.astro';
+import { isLang } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { isPublishedRights, isPublishedStatus, showDrafts } from '../../lib/drafts';
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'bg' } }, { params: { lang: 'en' } }];
+}
+
+const { lang: langParam } = Astro.params;
+if (!langParam || !isLang(langParam)) {
+	throw new Error(`Unsupported language: ${langParam}`);
+}
+const lang: Lang = langParam;
+
+const festivalEntry = await getEntry('festival', 'festival');
+if (!festivalEntry) {
+	throw new Error('Missing festival.yaml content entry');
+}
+const festival = festivalEntry.data;
+const draftsVisible = showDrafts();
+
+const expectItems = (await getCollection('expect'))
+	.filter((entry) => isPublishedStatus(entry.data.status))
+	.sort((a, b) => a.data.order - b.data.order)
+	.map((entry) => ({
+		title: entry.data.title[lang],
+		description: entry.data.description[lang],
+		tag: entry.data.tag[lang],
+		venueHint: entry.data.venueHint?.[lang],
+		icon: entry.data.icon,
+		image: entry.data.image,
+		alt: entry.data.alt[lang],
+		isKids: entry.data.isKids,
+		isDraft: entry.data.status === 'draft',
+	}));
+
+const locations = await getCollection('locations');
+const locationName = (id: string) => {
+	const match = locations.find((loc) => loc.id === id);
+	return match ? match.data.name[lang] : id;
+};
+
+const programmeDays = await getCollection('programme');
+const highlightItems = programmeDays
+	.flatMap((day) =>
+		day.data.items
+			.filter((item) => item.highlight && isPublishedStatus(item.status))
+			.map((item) => ({
+				time: item.time,
+				title: item.title[lang],
+				description: item.description[lang],
+				locationName: locationName(item.location),
+				tags: item.tags,
+				isDraft: item.status === 'draft',
+			})),
+	)
+	.sort((a, b) => a.time.localeCompare(b.time));
+
+const locationItems = locations
+	.filter((entry) => isPublishedStatus(entry.data.status))
+	.map((entry) => ({
+		name: entry.data.name[lang],
+		address: entry.data.address[lang],
+		schedule: entry.data.schedule?.[lang],
+		transport: entry.data.transport?.[lang],
+		mapUrl: entry.data.mapUrl,
+		isDraft: entry.data.status === 'draft',
+		mapPin: entry.data.mapPin,
+	}));
+
+const galleryItems = (await getCollection('gallery'))
+	.filter((entry) => isPublishedRights(entry.data.rightsConfirmed))
+	.sort((a, b) => a.data.order - b.data.order)
+	.map((entry) => ({
+		id: entry.id,
+		src: entry.data.src,
+		alt: entry.data.alt[lang],
+		caption: entry.data.caption?.[lang],
+		isDraft: !entry.data.rightsConfirmed,
+	}));
+
+const partnerItems = (await getCollection('partners'))
+	.filter((entry) => isPublishedStatus(entry.data.status))
+	.map((entry) => ({
+		name: entry.data.name[lang],
+		subtitle: entry.data.subtitle?.[lang],
+		url: entry.data.url,
+		icon: entry.data.icon,
+		group: entry.data.group,
+		isDraft: entry.data.status === 'draft',
+	}));
+
+const firstConfirmedLocation = locationItems.find((item) => !item.isDraft);
+const locationHint = firstConfirmedLocation?.name;
+---
+
+<Base lang={lang} titleKey="home.metaTitle" descriptionKey="home.metaDescription" festival={festival}>
+	<Hero
+		lang={lang}
+		title={festival.hero.title[lang]}
+		tagline={festival.hero.tagline[lang]}
+		eyebrow={festival.hero.eyebrow[lang]}
+		image={festival.hero.image}
+		imageAlt={festival.hero.imageAlt[lang]}
+		dates={festival.dates?.[lang]}
+		showFreeAdmission={festival.admission === 'free'}
+		locationHint={locationHint}
+		showDraftMarkers={draftsVisible}
+	/>
+
+	<ExpectGrid lang={lang} items={expectItems} />
+
+	<Highlights lang={lang} items={highlightItems} />
+
+	<Locations
+		lang={lang}
+		lead={festival.locationsIntro?.[lang]}
+		items={locationItems}
+	/>
+
+	<About
+		lang={lang}
+		eyebrow={festival.about.eyebrow[lang]}
+		title={festival.about.title[lang]}
+		quote={festival.about.quote?.[lang]}
+		paragraphs={festival.about.paragraphs.map((p) => p[lang])}
+		image={festival.about.image}
+		imageAlt={festival.about.imageAlt[lang]}
+		imageCredit={festival.about.imageCredit?.[lang]}
+		stats={festival.stats}
+		showDraftMarkers={draftsVisible}
+	/>
+
+	<Gallery lang={lang} items={galleryItems} />
+
+	<Partners lang={lang} items={partnerItems} />
+
+	<Contact lang={lang} email={festival.email} facebook={festival.facebook} />
+</Base>

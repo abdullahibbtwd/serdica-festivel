@@ -1,0 +1,66 @@
+# PLACEHOLDER / DRAFT — replace before launch. Do not treat as confirmed facts.
+edition: 'TBD (placeholder edition)'
+# dates omitted — hero shows "date to be announced"
+admission: unknown
+email: serdica_aeterna@abv.bg
+facebook: 'https://www.facebook.com/share/14thCv2VStQ/?mibextid=wwXIfr'
+hero:
+  title:
+    bg: 'Ulpia Serdica Festival'
+    en: 'Ulpia Serdica Festival'
+  tagline:
+    # DRAFT-BG: needs native review
+    bg: 'Антична Сердика оживява'
+    en: 'Ancient Serdica Comes to Life'
+  eyebrow:
+    # DRAFT-BG: needs native review
+    bg: 'Жив-исторически фестивал · София'
+    en: 'Living History Festival · Sofia'
+  image: ../assets/images/hero/hero.jpg
+  imageAlt:
+    # DRAFT-BG: needs native review
+    # Rights not confirmed — Stitch export placeholder photography
+    bg: 'Римски пресъздаватели в доспехи пред антични руини (чернова снимка — правата не са потвърдени)'
+    en: 'Roman reenactors in armour before ancient ruins (draft photo — rights not confirmed)'
+about:
+  eyebrow:
+    # DRAFT-BG: needs native review
+    bg: 'Сдружение „Serdica Aeterna“'
+    en: 'Serdica Aeterna Association'
+  title:
+    # DRAFT-BG: needs native review
+    bg: 'Възраждане на класическото наследство на града, обичан от Константин'
+    en: "Reviving the Classical Legacy of Emperor Constantine's Beloved City"
+  # NEEDS ORGANISER CONFIRMATION — attribution and wording of this quote
+  quote:
+    # DRAFT-BG: needs native review
+    bg: '„Сердика е моят Рим“ — приписва се на император Константин Велики (нуждае се от потвърждение).'
+    en: '"Serdica is my Rome," Roman Emperor Constantine the Great famously proclaimed. (Needs organiser confirmation.)'
+  paragraphs:
+    - # DRAFT-BG: needs native review
+      # NEEDS ORGANISER CONFIRMATION — historical claims and tone
+      bg: 'Основан като автентичен исторически фестивал, Ulpia Serdica връща златната епоха в пространствата на съвременна София. Този текст е чернова и подлежи на редакция от организатора.'
+      en: 'Founded as an authentic historical festival, Ulpia Serdica brings that golden era back into the limestone squares and subterranean streets of modern Sofia. Draft copy — subject to organiser edit.'
+    - # DRAFT-BG: needs native review
+      # NEEDS ORGANISER CONFIRMATION — claims about methods ("rigorous", "without theatrical shortcuts")
+      bg: 'Организиран от сдружение „Serdica Aeterna“. Мисията и методите на фестивала ще бъдат описани след потвърждение от организатора. Текстът по-долу е заместител.'
+      en: 'Organised by the Serdica Aeterna Association. Festival mission and methods will be described once confirmed by the organiser. The following is placeholder wording pending confirmation of claims such as academic rigor and exclusion of theatrical shortcuts.'
+  image: ../assets/images/about/about.png
+  imageAlt:
+    # DRAFT-BG: needs native review
+    # Rights not confirmed — Stitch export placeholder photography
+    bg: 'Група пресъздаватели в римски облекла до антична зидария (чернова снимка — правата не са потвърдени)'
+    en: 'Group of reenactors in Roman dress beside ancient masonry (draft photo — rights not confirmed)'
+  imageCredit:
+    # DRAFT-BG: needs native review
+    bg: 'Кредитът на снимката ще бъде добавен след потвърждение на правата'
+    en: 'Photo credit to be added once rights are confirmed'
+stats:
+  # PLACEHOLDER figures — not confirmed
+  participants: 120
+  countries: 5
+  # days omitted until confirmed (Stitch "3 days" treated as invented)
+locationsIntro:
+  # DRAFT-BG: needs native review
+  bg: 'В сърцето на антична Улпия Сердика, в центъра на София.'
+  en: 'Staged in the authentic heart of ancient Ulpia Serdica, right in central Sofia.'

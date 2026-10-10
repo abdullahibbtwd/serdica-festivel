@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import PlaceholderMark from './PlaceholderMark.astro';
+
+interface GalleryItem {
+	id: string;
+	src: ImageMetadata;
+	alt: string;
+	caption?: string;
+	isDraft: boolean;
+}
+
+interface Props {
+	lang: Lang;
+	items: GalleryItem[];
+}
+
+const { lang, items } = Astro.props;
+---
+
+<section
+	class="py-space-xl lg:py-28 bg-dark-bg text-dark-text border-b border-accent-2/40"
+	id="gallery"
+	data-component="Gallery"
+>
+	<div class="max-w-7xl mx-auto px-4 md:px-margin">
+		<div class="max-w-2xl mb-12">
+			<div
+				class="inline-block px-2.5 py-1 rounded mb-3 bronze-border-dark bg-dark-surface text-badge-free text-eyebrow tracking-widest uppercase"
+			>
+				{t(lang, 'gallery.eyebrow')}
+			</div>
+			<h2 class="text-headline-lg-mobile md:text-headline-lg text-surface-bright tracking-tight font-semibold">
+				{t(lang, 'gallery.title')}
+			</h2>
+			<p class="text-body-md text-dark-muted mt-2">{t(lang, 'gallery.lead')}</p>
+		</div>
+
+		{
+			items.length === 0 ? (
+				<p class="text-body-md text-dark-muted">{t(lang, 'gallery.empty')}</p>
+			) : (
+				<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 list-none p-0 m-0">
+					{items.map((item, index) => (
+						<li>
+							<button
+								type="button"
+								class="gallery-trigger group relative aspect-[4/5] rounded overflow-hidden bronze-border-dark bg-dark-surface w-full text-left cursor-pointer"
+								data-gallery-index={index}
+								aria-haspopup="dialog"
+								aria-label={`${t(lang, 'gallery.open')}: ${item.alt}`}
+							>
+								<Image
+									src={item.src}
+									alt={item.alt}
+									width={600}
+									height={750}
+									class="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-500"
+									loading="lazy"
+								/>
+								<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+									<span class="text-sm font-semibold text-white">
+										{item.caption ?? item.alt}
+										{item.isDraft && <PlaceholderMark lang={lang} />}
+									</span>
+								</div>
+							</button>
+						</li>
+					))}
+				</ul>
+			)
+		}
+	</div>
+
+	{
+		items.length > 0 && (
+			<dialog
+				id="gallery-lightbox"
+				class="m-auto max-w-[min(96vw,56rem)] w-full bg-dark-bg text-dark-text p-0 rounded bronze-border-dark shadow-xl backdrop:bg-black/70"
+				aria-label={t(lang, 'gallery.title')}
+			>
+				<form method="dialog" class="flex justify-end p-2">
+					<button
+						type="submit"
+						class="text-label-md uppercase tracking-wider px-3 py-2 hover:text-badge-free"
+						value="close"
+					>
+						{t(lang, 'gallery.close')}
+					</button>
+				</form>
+				<div class="px-4 pb-4">
+					<img id="gallery-lightbox-img" src="" alt="" class="w-full h-auto max-h-[70vh] object-contain mx-auto" />
+					<p id="gallery-lightbox-caption" class="text-body-sm text-dark-muted mt-3 text-center"></p>
+				</div>
+			</dialog>
+		)
+	}
+</section>
+
+{
+	items.length > 0 && (
+		<script define:vars={{ galleryData: items.map((item) => ({ src: item.src.src, alt: item.alt, caption: item.caption ?? item.alt })) }}>
+			const dialog = document.getElementById('gallery-lightbox');
+			const img = document.getElementById('gallery-lightbox-img');
+			const caption = document.getElementById('gallery-lightbox-caption');
+			const triggers = Array.from(document.querySelectorAll('.gallery-trigger'));
+			let lastTrigger = null;
+			let current = 0;
+
+			function openAt(index, trigger) {
+				if (!(dialog instanceof HTMLDialogElement) || !(img instanceof HTMLImageElement) || !caption) return;
+				current = index;
+				const item = galleryData[index];
+				img.src = item.src;
+				img.alt = item.alt;
+				caption.textContent = item.caption;
+				lastTrigger = trigger;
+				dialog.showModal();
+			}
+
+			function closeLightbox() {
+				if (!(dialog instanceof HTMLDialogElement)) return;
+				dialog.close();
+				lastTrigger?.focus();
+			}
+
+			triggers.forEach((trigger) => {
+				trigger.addEventListener('click', () => {
+					const index = Number(trigger.getAttribute('data-gallery-index') || '0');
+					openAt(index, trigger);
+				});
+			});
+
+			dialog?.addEventListener('keydown', (event) => {
+				if (!(event instanceof KeyboardEvent)) return;
+				if (event.key === 'ArrowRight') {
+					event.preventDefault();
+					openAt((current + 1) % galleryData.length, lastTrigger);
+				}
+				if (event.key === 'ArrowLeft') {
+					event.preventDefault();
+					openAt((current - 1 + galleryData.length) % galleryData.length, lastTrigger);
+				}
+				if (event.key === 'Escape') {
+					closeLightbox();
+				}
+			});
+		</script>
+	)
+}

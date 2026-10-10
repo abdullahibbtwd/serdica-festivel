@@ -1,0 +1,13 @@
+# PLACEHOLDER gallery entry — rightsConfirmed: false
+order: 4
+rightsConfirmed: false
+src: ../../assets/images/gallery/04-child.png
+alt:
+  # DRAFT-BG: needs native review
+  bg: 'Заместител на галерийна снимка 4 — не е реална фестивална фотография'
+  en: 'Placeholder gallery image 4 — not real festival photography'
+caption:
+  # DRAFT-BG: needs native review
+  bg: 'Заместител 4'
+  en: 'Placeholder 4'
+credit: 'Placeholder'

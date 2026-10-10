@@ -1,0 +1,23 @@
+# PLACEHOLDER location — address/hours/transport are not confirmed.
+# Replaces Stitch "St. George Rotunda" venue listing until organiser confirms.
+name:
+  # DRAFT-BG: needs native review
+  bg: 'Археологически двор при Ротондата — заместител'
+  en: 'St. George Rotunda Archaeological Yard — placeholder'
+address:
+  # DRAFT-BG: needs native review
+  bg: 'Адресът ще бъде потвърден (заместител)'
+  en: 'Address to be confirmed (placeholder)'
+schedule:
+  # DRAFT-BG: needs native review
+  bg: 'Графикът ще бъде обявен (заместител)'
+  en: 'Schedule to be announced (placeholder)'
+transport:
+  # DRAFT-BG: needs native review
+  bg: 'Пешеходен достъп — заместител'
+  en: 'On foot — placeholder'
+mapUrl: 'https://www.openstreetmap.org/?mlat=42.6971&mlon=23.3228#map=18/42.6971/23.3228'
+mapPin:
+  lat: 42.6971
+  lng: 23.3228
+status: draft

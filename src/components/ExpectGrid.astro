@@ -1,0 +1,115 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { Icon } from 'astro-icon/components';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import PlaceholderMark from './PlaceholderMark.astro';
+
+interface ExpectCard {
+	title: string;
+	description: string;
+	tag: string;
+	venueHint?: string;
+	icon?: string;
+	image: ImageMetadata;
+	alt: string;
+	isKids: boolean;
+	isDraft: boolean;
+}
+
+interface Props {
+	lang: Lang;
+	items: ExpectCard[];
+}
+
+const { lang, items } = Astro.props;
+
+const defaultIcons = ['shield', 'swords', 'construction', 'restaurant', 'child-care', 'temple-buddhist'];
+---
+
+<section class="py-space-xl lg:py-28 bg-background relative" id="expect" data-component="ExpectGrid">
+	<div class="max-w-7xl mx-auto px-4 md:px-margin">
+		<div class="max-w-2xl mb-12">
+			<div
+				class="inline-block px-2.5 py-1 rounded mb-3 bronze-border bg-surface-container-high text-secondary text-eyebrow tracking-widest uppercase"
+			>
+				{t(lang, 'expect.eyebrow')}
+			</div>
+			<h2 class="text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight font-semibold">
+				{t(lang, 'expect.title')}
+			</h2>
+			<p class="text-body-lg text-on-surface-variant mt-3">{t(lang, 'expect.lead')}</p>
+		</div>
+
+		<ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg list-none p-0 m-0">
+			{
+				items.map((item, index) => {
+					const icon = item.icon ?? defaultIcons[index % defaultIcons.length];
+					return (
+						<li
+							class:list={[
+								'group bg-surface-container-low rounded-xl bronze-border p-6 flex flex-col justify-between hover:border-secondary transition-all duration-300 ambient-card',
+								item.isKids && 'border-t-4 border-t-tag-kids',
+							]}
+						>
+							<div class="space-y-4">
+								<div class="aspect-[16/10] overflow-hidden rounded bronze-border">
+									<Image
+										src={item.image}
+										alt={item.alt}
+										width={800}
+										height={500}
+										class="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-500"
+										loading="lazy"
+									/>
+								</div>
+								<div class="flex items-center justify-between gap-2">
+									<span
+										class:list={[
+											'text-eyebrow uppercase font-bold tracking-widest',
+											item.isKids ? 'text-tag-kids' : 'text-secondary',
+										]}
+									>
+										{item.tag}
+									</span>
+									{icon && (
+										<Icon
+											name={`material-symbols:${icon}`}
+											class={item.isKids ? 'text-tag-kids' : 'text-secondary'}
+											aria-hidden="true"
+										/>
+									)}
+								</div>
+								<h3
+									class:list={[
+										'text-headline-sm text-on-surface transition-colors',
+										item.isKids ? 'group-hover:text-tag-kids' : 'group-hover:text-primary',
+									]}
+								>
+									{item.title}
+									{item.isDraft && <PlaceholderMark lang={lang} />}
+								</h3>
+								<p class="text-body-md text-on-surface-variant">{item.description}</p>
+							</div>
+							{item.venueHint && (
+								<div
+									class:list={[
+										'pt-4 mt-4 border-t border-outline-variant/30 flex items-center text-label-sm font-semibold',
+										item.isKids ? 'text-tag-kids' : 'text-secondary',
+									]}
+								>
+									<span>
+										{item.venueHint}
+										{item.isDraft && <PlaceholderMark lang={lang} />}
+									</span>
+									<Icon name="material-symbols:arrow-forward" class="ml-auto text-base" aria-hidden="true" />
+								</div>
+							)}
+						</li>
+					);
+				})
+			}
+		</ul>
+	</div>
+</section>

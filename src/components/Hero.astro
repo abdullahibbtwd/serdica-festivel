@@ -1,0 +1,121 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { Icon } from 'astro-icon/components';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import PlaceholderMark from './PlaceholderMark.astro';
+
+interface Props {
+	lang: Lang;
+	title: string;
+	tagline: string;
+	eyebrow: string;
+	image: ImageMetadata;
+	imageAlt: string;
+	dates?: string;
+	showFreeAdmission?: boolean;
+	locationHint?: string;
+	showDraftMarkers?: boolean;
+}
+
+const {
+	lang,
+	title,
+	tagline,
+	eyebrow,
+	image,
+	imageAlt,
+	dates,
+	showFreeAdmission = false,
+	locationHint,
+	showDraftMarkers = false,
+} = Astro.props;
+---
+
+<section
+	class="relative bg-dark-bg text-dark-text min-h-[calc(100dvh-5rem)] flex items-center overflow-hidden border-b border-accent-2/40"
+>
+	<div class="absolute inset-0 z-0">
+		<Image
+			src={image}
+			alt={imageAlt}
+			width={1600}
+			height={900}
+			class="w-full h-full object-cover object-center brightness-[0.42] contrast-[1.12]"
+			loading="eager"
+			fetchpriority="high"
+		/>
+		<div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/60 to-transparent"></div>
+		<div class="absolute inset-0 bg-gradient-to-r from-dark-bg/90 via-transparent to-dark-bg/40"></div>
+	</div>
+
+	<div class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-margin py-20 lg:py-28 flex flex-col justify-center">
+		<div class="max-w-3xl space-y-6">
+			<div
+				class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bronze-border-dark bg-dark-surface/80 backdrop-blur-sm"
+			>
+				<span class="w-2 h-2 rounded-full bg-dark-accent motion-safe:animate-pulse" aria-hidden="true"></span>
+				<span class="text-eyebrow text-badge-free tracking-widest uppercase">{eyebrow}</span>
+				{showDraftMarkers && <PlaceholderMark lang={lang} />}
+			</div>
+
+			<div class="space-y-3">
+				<h1 class="text-display-mobile md:text-display text-surface-bright tracking-tight text-balance leading-none">
+					{title}
+				</h1>
+				<p class="text-headline-sm md:text-headline-md text-[#E0D8D5] italic font-normal tracking-wide">
+					{tagline}
+				</p>
+			</div>
+
+			<div
+				class="flex flex-wrap items-center gap-y-3 gap-x-6 py-4 border-y border-accent-2/30 text-body-md text-dark-muted"
+			>
+				<div class="flex items-center gap-2">
+					<Icon name="material-symbols:calendar-month" class="text-badge-free" aria-hidden="true" />
+					<span class="text-surface-bright font-semibold">
+						{dates ?? t(lang, 'hero.dateTba')}
+						{!dates && showDraftMarkers && <PlaceholderMark lang={lang} />}
+					</span>
+				</div>
+				{
+					locationHint && (
+						<div class="flex items-center gap-2">
+							<Icon name="material-symbols:pin-drop" class="text-badge-free" aria-hidden="true" />
+							<span>
+								{locationHint}
+								{showDraftMarkers && <PlaceholderMark lang={lang} />}
+							</span>
+						</div>
+					)
+				}
+				{
+					showFreeAdmission && (
+						<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-badge-free text-on-background font-bold text-label-sm tracking-wider">
+							<Icon name="material-symbols:verified" class="text-xs" aria-hidden="true" />
+							{t(lang, 'admission.free')}
+						</div>
+					)
+				}
+			</div>
+
+			<div class="flex flex-wrap items-center gap-4 pt-4">
+				<a
+					class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded bg-primary-container text-white text-label-md uppercase tracking-wider font-bold hover:bg-[#7f0009] transition-all shadow-md active:scale-[0.98]"
+					href={`/${lang}/programme/`}
+				>
+					<Icon name="material-symbols:event-note" class="text-lg" aria-hidden="true" />
+					<span>{t(lang, 'button.viewProgramme')}</span>
+				</a>
+				<a
+					class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded bronze-border-dark text-dark-text hover:bg-dark-surface hover:text-badge-free text-label-md uppercase tracking-wider font-semibold transition-all"
+					href={`/${lang}/#locations`}
+				>
+					<Icon name="material-symbols:map" class="text-lg" aria-hidden="true" />
+					<span>{t(lang, 'button.getDirections')}</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

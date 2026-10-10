@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#E8E0D6"/>
+  <rect x="24" y="24" width="752" height="552" fill="none" stroke="#92400E" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="400.0" y="300.0" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#57534E">gallery-2</text>
+  <text x="400.0" y="336.0" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#92400E">PLACEHOLDER</text>
+</svg>

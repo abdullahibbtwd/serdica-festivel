@@ -1,0 +1,72 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import BrandLogo from './BrandLogo.astro';
+import LangSwitch from './LangSwitch.astro';
+
+interface Props {
+	lang: Lang;
+	pathname: string;
+	email: string;
+	showFreeAdmission?: boolean;
+}
+
+const { lang, pathname, email, showFreeAdmission = false } = Astro.props;
+
+const links = [
+	{ href: `/${lang}/programme/`, key: 'nav.programme' as const },
+	{ href: `/${lang}/#locations`, key: 'nav.locations' as const },
+	{ href: `/${lang}/#about`, key: 'nav.about' as const },
+	{ href: `/${lang}/#gallery`, key: 'nav.gallery' as const },
+	{ href: `/${lang}/#partners`, key: 'nav.partners' as const },
+];
+---
+
+<footer class="bg-inverse-surface w-full border-t border-outline/30 text-surface-bright" data-component="Footer">
+	<div class="w-full px-4 md:px-margin py-space-xl max-w-7xl mx-auto flex flex-col gap-space-lg">
+		<div
+			class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-white/10 pb-8"
+		>
+			<div class="flex items-center gap-2">
+				<BrandLogo size={44} />
+				<span class="text-headline-sm text-surface-bright uppercase tracking-wider font-bold">
+					{t(lang, 'brand.name')}
+				</span>
+			</div>
+			<nav
+				class="flex flex-wrap items-center gap-x-6 gap-y-2 text-body-sm"
+				aria-label={t(lang, 'nav.ariaLabel')}
+			>
+				{
+					links.map((link) => (
+						<a class="text-surface-dim hover:text-surface-bright transition-colors" href={link.href}>
+							{t(lang, link.key)}
+						</a>
+					))
+				}
+				<a class="text-surface-dim hover:text-surface-bright transition-colors" href={`mailto:${email}`}>
+					{email}
+				</a>
+				<LangSwitch lang={lang} pathname={pathname} tone="dark" />
+			</nav>
+		</div>
+		<div
+			class="flex flex-col sm:flex-row items-center justify-between text-label-sm text-dark-muted gap-4 text-center sm:text-left"
+		>
+			<p>
+				© {t(lang, 'brand.name')}. {t(lang, 'footer.rights')} · {t(lang, 'footer.contact')}: {email}
+			</p>
+			<div class="flex flex-wrap items-center justify-center gap-4 text-xs">
+				<span>{t(lang, 'seo.city')}</span>
+				{
+					showFreeAdmission && (
+						<>
+							<span aria-hidden="true">•</span>
+							<span class="text-badge-free font-semibold">{t(lang, 'admission.free')}</span>
+						</>
+					)
+				}
+			</div>
+		</div>
+	</div>
+</footer>

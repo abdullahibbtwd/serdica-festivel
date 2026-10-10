@@ -1,0 +1,22 @@
+# PLACEHOLDER expect card — status: draft. Image is a local placeholder.
+order: 1
+status: draft
+isKids: false
+icon: shield
+title:
+  # DRAFT-BG: needs native review
+  bg: 'Битки и легиони'
+  en: 'Battles & Legions'
+description:
+  # DRAFT-BG: needs native review
+  bg: 'Тактически учения и строева стена от щитове (заместител).'
+  en: 'Full-contact tactical drill & shield wall maneuvers by Roman cohorts.'
+tag:
+  # DRAFT-BG: needs native review
+  bg: 'Тактика'
+  en: 'Tactics'
+image: ../../assets/images/expect/battles.jpg
+alt:
+  # DRAFT-BG: needs native review
+  bg: 'Заместител на снимка за „Битки и легиони“ — не е реална фестивална фотография'
+  en: 'Placeholder image for "Battles & Legions" — not real festival photography'

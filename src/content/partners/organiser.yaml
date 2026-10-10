@@ -1,0 +1,13 @@
+# PLACEHOLDER organiser entry — confirm branding before launch.
+name:
+  # DRAFT-BG: needs native review
+  bg: 'Сдружение „Serdica Aeterna“'
+  en: 'Serdica Aeterna Association'
+subtitle:
+  # DRAFT-BG: needs native review
+  bg: 'Жива история и културно наследство — България (заместител)'
+  en: 'Living History & Cultural Heritage Bulgaria (placeholder)'
+url: 'https://example.bg/'
+icon: shield
+group: organiser
+status: draft

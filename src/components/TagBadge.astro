@@ -1,0 +1,33 @@
+---
+import type { Lang } from '../i18n/ui';
+import type { UiKey } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+type Tag = 'kids' | 'join-in' | 'battle' | 'craft' | 'food' | 'ceremony' | 'spectacle';
+
+interface Props {
+	lang: Lang;
+	tag: Tag;
+}
+
+const { lang, tag } = Astro.props;
+const key = `tag.${tag}` as UiKey;
+const classByTag: Record<Tag, string> = {
+	kids: 'tag-kids',
+	'join-in': 'tag-join-in',
+	battle: 'tag-battle',
+	craft: 'tag-craft',
+	food: 'tag-food',
+	ceremony: 'tag-ceremony',
+	spectacle: 'tag-spectacle',
+};
+---
+
+<span
+	class:list={[
+		'inline-block px-2.5 py-1 text-label-sm uppercase tracking-wider rounded font-semibold',
+		classByTag[tag],
+	]}
+>
+	{t(lang, key)}
+</span>

@@ -1,0 +1,90 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import PlaceholderMark from './PlaceholderMark.astro';
+
+interface Props {
+	lang: Lang;
+	name: string;
+	address: string;
+	schedule?: string;
+	transport?: string;
+	mapUrl: string;
+	isDraft?: boolean;
+	icon?: string;
+}
+
+const {
+	lang,
+	name,
+	address,
+	schedule,
+	transport,
+	mapUrl,
+	isDraft = false,
+	icon = 'account-balance',
+} = Astro.props;
+---
+
+<article
+	class="bg-surface-container-low rounded-xl bronze-border p-6 lg:p-8 flex flex-col justify-between ambient-card h-full"
+>
+	<div class="space-y-4">
+		<div class="flex items-center justify-between gap-3">
+			<span class="px-2.5 py-1 rounded bg-badge-free/15 text-accent-2 font-bold text-xs uppercase tracking-wider border border-accent-2/20">
+				{t(lang, 'locations.eyebrow')}
+			</span>
+			<Icon name={`material-symbols:${icon}`} class="text-secondary text-2xl shrink-0" aria-hidden="true" />
+		</div>
+		<h3 class="text-headline-md text-on-surface font-semibold">
+			{name}
+			{isDraft && <PlaceholderMark lang={lang} />}
+		</h3>
+		<div class="space-y-2.5 text-body-md text-on-surface-variant">
+			<div class="flex items-start gap-3">
+				<Icon name="material-symbols:pin-drop" class="text-secondary shrink-0 text-lg mt-0.5" aria-hidden="true" />
+				<span>
+					<strong>{t(lang, 'locations.address')}:</strong>
+					{' '}
+					{address}
+				</span>
+			</div>
+			{
+				schedule && (
+					<div class="flex items-start gap-3">
+						<Icon name="material-symbols:event" class="text-secondary shrink-0 text-lg mt-0.5" aria-hidden="true" />
+						<span>
+							<strong>{t(lang, 'locations.schedule')}:</strong>
+							{' '}
+							{schedule}
+						</span>
+					</div>
+				)
+			}
+			{
+				transport && (
+					<div class="flex items-start gap-3">
+						<Icon name="material-symbols:subway" class="text-secondary shrink-0 text-lg mt-0.5" aria-hidden="true" />
+						<span>
+							<strong>{t(lang, 'locations.transport')}:</strong>
+							{' '}
+							{transport}
+						</span>
+					</div>
+				)
+			}
+		</div>
+	</div>
+	<div class="mt-6 pt-4 border-t border-outline-variant/30 flex items-center justify-end">
+		<a
+			class="inline-flex items-center gap-1.5 text-label-md text-primary hover:underline font-semibold"
+			href={mapUrl}
+			rel="noopener noreferrer"
+			target="_blank"
+		>
+			<span>{t(lang, 'button.openInMaps')}</span>
+			<Icon name="material-symbols:open-in-new" class="text-base" aria-hidden="true" />
+		</a>
+	</div>
+</article>

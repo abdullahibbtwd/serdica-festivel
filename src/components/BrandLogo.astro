@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+
+interface Props {
+	/** Pixel height of the logo mark */
+	size?: number;
+	class?: string;
+}
+
+const { size = 48, class: className = '' } = Astro.props;
+---
+
+<Image
+	src={logo}
+	alt=""
+	width={size}
+	height={size}
+	densities={[1, 2]}
+	format="webp"
+	quality={92}
+	class:list={['shrink-0 object-contain rounded-full', className]}
+	loading="eager"
+	aria-hidden="true"
+/>

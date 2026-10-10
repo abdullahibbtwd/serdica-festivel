@@ -1,0 +1,13 @@
+# PLACEHOLDER gallery entry — rightsConfirmed: false
+order: 6
+rightsConfirmed: false
+src: ../../assets/images/gallery/06-torchlight.png
+alt:
+  # DRAFT-BG: needs native review
+  bg: 'Заместител на галерийна снимка 6 — не е реална фестивална фотография'
+  en: 'Placeholder gallery image 6 — not real festival photography'
+caption:
+  # DRAFT-BG: needs native review
+  bg: 'Заместител 6'
+  en: 'Placeholder 6'
+credit: 'Placeholder'
