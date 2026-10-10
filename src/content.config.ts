@@ -23,6 +23,8 @@ const programmeTag = z.enum([
 const programme = defineCollection({
 	loader: glob({ pattern: '**/*.{yaml,yml,md}', base: './src/content/programme' }),
 	schema: z.object({
+		/** Which upcoming edition year this day belongs to */
+		editionYear: z.union([z.literal(2025), z.literal(2026)]).optional(),
 		day: z.number().int().positive(),
 		label: bilingual,
 		items: z.array(
@@ -39,6 +41,7 @@ const programme = defineCollection({
 	}),
 });
 
+/** Kept for future upcoming editions — not used on home while mode is between-editions. */
 const locations = defineCollection({
 	loader: glob({ pattern: '**/*.{yaml,yml,md}', base: './src/content/locations' }),
 	schema: z.object({
@@ -61,11 +64,10 @@ const partners = defineCollection({
 	loader: glob({ pattern: '**/*.{yaml,yml,md}', base: './src/content/partners' }),
 	schema: z.object({
 		name: bilingual,
-		subtitle: bilingual.optional(),
-		url: z.url(),
+		role: z.enum(['organiser', 'funder', 'institutional', 'sponsor']),
+		editions: z.array(z.union([z.literal(2025), z.literal(2026)])).min(1),
+		url: z.url().optional(),
 		logo: z.string().optional(),
-		icon: z.string().optional(),
-		group: z.enum(['organiser', 'institutional', 'sponsor']),
 		status,
 	}),
 });
@@ -73,14 +75,25 @@ const partners = defineCollection({
 const gallery = defineCollection({
 	loader: glob({ pattern: '**/*.{yaml,yml,md}', base: './src/content/gallery' }),
 	schema: ({ image }) =>
-		z.object({
-			src: image(),
-			alt: bilingual,
-			caption: bilingual.optional(),
-			credit: z.string().optional(),
-			rightsConfirmed: z.boolean().default(false),
-			order: z.number().int().nonnegative().default(0),
-		}),
+		z
+			.object({
+				src: image(),
+				alt: bilingual,
+				caption: bilingual.optional(),
+				edition: z.union([z.literal(2025), z.literal(2026)]),
+				credit: z.string().optional(),
+				rightsConfirmed: z.boolean().default(false),
+				order: z.number().int().nonnegative().default(0),
+			})
+			.superRefine((data, ctx) => {
+				if (data.rightsConfirmed && !data.credit?.trim()) {
+					ctx.addIssue({
+						code: 'custom',
+						message: 'credit is required when rightsConfirmed is true',
+						path: ['credit'],
+					});
+				}
+			}),
 });
 
 const expect = defineCollection({
@@ -100,15 +113,137 @@ const expect = defineCollection({
 		}),
 });
 
+const editions = defineCollection({
+	loader: glob({ pattern: '**/*.{yaml,yml,md}', base: './src/content/editions' }),
+	schema: z.object({
+		year: z.union([z.literal(2025), z.literal(2026)]),
+		number: z.union([z.literal(1), z.literal(2)]),
+		status: z.enum(['past', 'upcoming']),
+		name: bilingual,
+		days: z
+			.array(
+				z.object({
+					date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+					label: bilingual,
+					status,
+					places: z
+						.array(
+							z.object({
+								name: bilingual,
+								note: bilingual.optional(),
+								mapUrl: z.url().optional(),
+								status,
+							}),
+						)
+						.default([]),
+				}),
+			)
+			.min(1),
+		summary: bilingual,
+		theme: bilingual.optional(),
+		highlights: z.array(bilingual).optional(),
+		visitorActivities: z.array(bilingual).optional(),
+		weatherNote: bilingual.optional(),
+		stats: z
+			.object({
+				participants: z
+					.object({
+						value: z.string().min(1),
+						status,
+					})
+					.optional(),
+				countries: z
+					.object({
+						value: z.number().int().positive(),
+						/** Optional confirmed list of country names */
+						list: bilingual.optional(),
+						status,
+					})
+					.optional(),
+				groups: z
+					.object({
+						value: z.number().int().positive(),
+						status,
+					})
+					.optional(),
+				locations: z
+					.object({
+						value: z.number().int().positive(),
+						status,
+					})
+					.optional(),
+			})
+			.optional(),
+		funding: bilingual.optional(),
+		partners: z
+			.array(
+				z.object({
+					id: z.string().min(1),
+					role: z.enum(['organiser', 'funder', 'institutional', 'sponsor']),
+				}),
+			)
+			.default([]),
+		participatingGroups: z.array(z.string().min(1)).optional(),
+		media: z
+			.array(
+				z.object({
+					outlet: z.string().min(1),
+					title: bilingual.optional(),
+					url: z.url().optional(),
+					status,
+				}),
+			)
+			.optional(),
+		additionalNotes: z
+			.array(
+				z.object({
+					text: bilingual,
+					status,
+				}),
+			)
+			.optional(),
+	}),
+});
+
+const about = defineCollection({
+	loader: glob({ pattern: '**/*.{yaml,yml,md}', base: './src/content/about' }),
+	schema: ({ image }) =>
+		z.object({
+			eyebrow: bilingual,
+			title: bilingual,
+			/** Short teaser on the home page */
+			lead: bilingual,
+			/** Mission line highlighted on home */
+			mission: bilingual,
+			/** Full body paragraphs */
+			paragraphs: z.array(bilingual).min(1),
+			image: image().optional(),
+			imageAlt: bilingual.optional(),
+		}),
+});
+
 const festival = defineCollection({
 	loader: glob({ pattern: 'festival.yaml', base: './src/content' }),
 	schema: ({ image }) =>
 		z.object({
-			edition: z.string().min(1),
-			dates: bilingual.optional(),
+			mode: z.enum(['between-editions', 'upcoming']),
+			nextEdition: z.union([z.literal(2025), z.literal(2026)]).nullable(),
 			admission: z.enum(['unknown', 'free', 'paid']),
 			email: z.email(),
+			phone: z.string().optional(),
+			phoneStatus: status.optional(),
 			facebook: z.url().optional(),
+			facebookStatus: status.optional(),
+			city: bilingual,
+			tagline: bilingual,
+			photographers: z
+				.array(
+					z.object({
+						name: z.string().min(1),
+						status,
+					}),
+				)
+				.default([]),
 			hero: z.object({
 				title: bilingual,
 				tagline: bilingual,
@@ -116,23 +251,6 @@ const festival = defineCollection({
 				image: image(),
 				imageAlt: bilingual,
 			}),
-			about: z.object({
-				eyebrow: bilingual,
-				title: bilingual,
-				// Needs organiser confirmation — see comments in festival.yaml
-				quote: bilingual.optional(),
-				paragraphs: z.array(bilingual).min(1),
-				image: image(),
-				imageAlt: bilingual,
-				imageCredit: bilingual.optional(),
-			}),
-			stats: z.object({
-				participants: z.number().int().nonnegative(),
-				countries: z.number().int().nonnegative(),
-				/** Optional third stat — omit until confirmed */
-				days: z.number().int().positive().optional(),
-			}),
-			locationsIntro: bilingual.optional(),
 		}),
 });
 
@@ -142,5 +260,7 @@ export const collections = {
 	partners,
 	gallery,
 	expect,
+	editions,
+	about,
 	festival,
 };

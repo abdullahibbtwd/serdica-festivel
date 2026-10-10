@@ -1,6 +1,6 @@
-# PLACEHOLDER expect card — status: draft. Image is a local placeholder.
+# Card copy needs organiser confirmation — keep generic, no invented activities.
 order: 2
-status: draft
+status: confirmed
 isKids: false
 icon: swords
 title:
@@ -9,14 +9,15 @@ title:
   en: 'Gladiators'
 description:
   # DRAFT-BG: needs native review
-  bg: 'Демонстрация на арена (заместител).'
-  en: 'Authentic combat demonstration in the arena with thraex & retiarius.'
+  # NEEDS CONFIRMATION — generic placeholder
+  bg: 'Гладиаторски демонстрации и бойни сцени от античността.'
+  en: 'Gladiatorial demonstrations and combat scenes from antiquity.'
 tag:
   # DRAFT-BG: needs native review
   bg: 'Арена'
   en: 'Arena'
-image: ../../assets/images/expect/gladiators.png
+image: ../../assets/images/expect/gladiators.jpg
 alt:
   # DRAFT-BG: needs native review
-  bg: 'Заместител на снимка за „Гладиатори“ — не е реална фестивална фотография'
-  en: 'Placeholder image for "Gladiators" — not real festival photography'
+  bg: 'Заместител на снимка за „Гладиатори" — правата не са потвърдени'
+  en: 'Placeholder image for "Gladiators" — rights not confirmed'

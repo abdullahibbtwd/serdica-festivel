@@ -1,0 +1,62 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import PlaceholderMark from './PlaceholderMark.astro';
+
+interface MediaItem {
+	outlet: string;
+	title?: string;
+	url?: string;
+	editionYear: number;
+	isDraft: boolean;
+}
+
+interface Props {
+	lang: Lang;
+	items: MediaItem[];
+}
+
+const { lang, items } = Astro.props;
+---
+
+{
+	items.length > 0 && (
+		<section class="py-space-xl lg:py-24 bg-surface-container-low border-y border-outline-variant/40" id="media">
+			<div class="max-w-7xl mx-auto px-4 md:px-margin">
+				<div class="max-w-2xl mb-10">
+					<div class="inline-block px-2.5 py-1 rounded mb-3 bronze-border bg-surface text-secondary text-eyebrow tracking-widest uppercase">
+						{t(lang, 'media.eyebrow')}
+					</div>
+					<h2 class="text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight font-semibold">
+						{t(lang, 'media.title')}
+					</h2>
+					<p class="text-body-md text-on-surface-variant mt-2">{t(lang, 'media.lead')}</p>
+				</div>
+				<ul class="grid grid-cols-1 md:grid-cols-2 gap-4 list-none p-0 m-0">
+					{items.map((item) => (
+						<li class="bg-surface rounded-lg bronze-border p-5 ambient-card">
+							<span class="text-xs font-bold uppercase tracking-wider text-secondary">{item.editionYear}</span>
+							{item.url ? (
+								<a
+									href={item.url}
+									rel="noopener noreferrer"
+									target="_blank"
+									class="block text-headline-sm text-primary font-semibold mt-1 hover:underline"
+								>
+									{item.outlet}
+									{item.isDraft && <PlaceholderMark lang={lang} />}
+								</a>
+							) : (
+								<p class="text-headline-sm text-on-surface font-semibold mt-1">
+									{item.outlet}
+									{item.isDraft && <PlaceholderMark lang={lang} />}
+								</p>
+							)}
+							{item.title && <p class="text-body-sm text-on-surface-variant mt-1">{item.title}</p>}
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+	)
+}

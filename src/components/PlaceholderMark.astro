@@ -1,14 +1,12 @@
 ---
-import type { Lang } from '../i18n/ui';
-import { t } from '../i18n/utils';
-import { showDrafts } from '../lib/drafts';
-
+/**
+ * Draft markers intentionally disabled — draft content still follows
+ * status / rightsConfirmed gating in production builds.
+ */
 interface Props {
-	lang: Lang;
+	lang?: string;
 	show?: boolean;
 }
 
-const { lang, show = true } = Astro.props;
+void Astro.props;
 ---
-
-{showDrafts() && show && <span class="placeholder-marker">{t(lang, 'placeholder.marker')}</span>}

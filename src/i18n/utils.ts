@@ -4,8 +4,14 @@ export function isLang(value: string): value is Lang {
 	return value === 'bg' || value === 'en';
 }
 
-export function t(lang: Lang, key: UiKey): string {
-	return ui[lang][key] ?? ui[defaultLang][key];
+export function t(lang: Lang, key: UiKey, vars?: Record<string, string | number>): string {
+	let value: string = ui[lang][key] ?? ui[defaultLang][key];
+	if (vars) {
+		for (const [name, replacement] of Object.entries(vars)) {
+			value = value.replaceAll(`{${name}}`, String(replacement));
+		}
+	}
+	return value;
 }
 
 /** Other locale for a given language. */

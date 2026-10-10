@@ -1,13 +1,16 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TagBadge from '../../components/TagBadge.astro';
 import PlaceholderMark from '../../components/PlaceholderMark.astro';
 import { isLang, t } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { isPublishedStatus } from '../../lib/drafts';
+import { getVisibleProgrammeDays, hasPublicProgramme } from '../../lib/programme';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+	if (!(await hasPublicProgramme())) {
+		return [];
+	}
 	return [{ params: { lang: 'bg' } }, { params: { lang: 'en' } }];
 }
 
@@ -22,151 +25,57 @@ if (!festivalEntry) {
 	throw new Error('Missing festival.yaml content entry');
 }
 const festival = festivalEntry.data;
-
-const locations = await getCollection('locations');
-const locationName = (id: string) => {
-	const match = locations.find((loc) => loc.id === id);
-	return match ? match.data.name[lang] : id;
-};
-
-const programmeDays = (await getCollection('programme'))
-	.map((entry) => ({
-		id: entry.id,
-		day: entry.data.day,
-		label: entry.data.label[lang],
-		items: entry.data.items
-			.filter((item) => isPublishedStatus(item.status))
-			.map((item) => ({
-				...item,
-				title: item.title[lang],
-				description: item.description[lang],
-				locationName: locationName(item.location),
-				isDraft: item.status === 'draft',
-			}))
-			.sort((a, b) => a.time.localeCompare(b.time)),
-	}))
-	.filter((day) => day.items.length > 0)
-	.sort((a, b) => a.day - b.day);
+const programmeDays = await getVisibleProgrammeDays(lang);
 ---
 
 <Base
 	lang={lang}
-	titleKey="programme.metaTitle"
-	descriptionKey="programme.metaDescription"
+	title={t(lang, 'programme.metaTitle')}
+	description={t(lang, 'programme.metaDescription')}
 	festival={festival}
+	showProgramme={true}
 >
-	<section class="py-space-xl px-4 md:px-margin max-w-4xl mx-auto">
-		<header class="text-center mb-space-xl">
-			<span class="text-eyebrow text-secondary tracking-widest block mb-space-xs">
-				{t(lang, 'highlights.eyebrow')}
-			</span>
-			<h1 class="text-headline-lg-mobile md:text-headline-lg text-on-surface">{t(lang, 'programme.title')}</h1>
-			{
-				festival.admission === 'free' && (
-					<p class="mt-space-sm">
-						<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-badge-free text-on-background font-bold tracking-wide text-label-md">
-							{t(lang, 'admission.free')}
-						</span>
-					</p>
-				)
-			}
-			<div class="w-16 h-0.5 bg-secondary/40 mx-auto mt-3"></div>
-		</header>
+	<section class="py-space-xl lg:py-28 px-4 md:px-margin max-w-4xl mx-auto">
+		<h1 class="text-headline-lg-mobile md:text-headline-lg text-on-surface mb-space-lg">
+			{t(lang, 'programme.title')}
+		</h1>
 
 		{
 			programmeDays.length === 0 ? (
-				<p class="text-center text-body-md text-on-surface-variant">{t(lang, 'programme.empty')}</p>
+				<p class="text-body-md text-on-surface-variant">{t(lang, 'programme.empty')}</p>
 			) : (
-				<>
-					<nav
-						class="programme-tabs flex flex-wrap gap-2 mb-space-lg justify-center"
-						aria-label={t(lang, 'programme.daysNav')}
-					>
-						{programmeDays.map((day) => (
-							<a
-								href={`#day-${day.day}`}
-								class="programme-tab px-4 py-2 rounded bronze-border text-label-md uppercase tracking-wider text-secondary hover:bg-stone transition-colors"
-								data-day={day.day}
-							>
+				<div class="space-y-space-xl">
+					{programmeDays.map((day) => (
+						<section aria-labelledby={`day-${day.id}`}>
+							<h2 id={`day-${day.id}`} class="text-headline-md text-on-surface mb-space-md">
 								{day.label}
-							</a>
-						))}
-					</nav>
-
-					<div class="space-y-space-xl">
-						{programmeDays.map((day) => (
-							<section id={`day-${day.day}`} class="programme-day scroll-mt-28">
-								<h2 class="text-headline-md text-on-surface mb-space-md">{day.label}</h2>
-								<ol class="bg-stone bronze-border rounded divide-y divide-secondary/20 overflow-hidden list-none p-0 m-0">
-									{day.items.map((item) => (
-										<li class="p-4 sm:p-space-md">
-											<div class="flex flex-col gap-space-sm">
-												<div class="flex flex-wrap items-baseline gap-x-space-md gap-y-1">
-													<time class="font-bold text-headline-sm text-primary">{item.time}</time>
-													<h3 class="text-headline-sm text-on-surface min-w-0">
-														{item.title}
-														{item.isDraft && <PlaceholderMark lang={lang} />}
-													</h3>
-												</div>
-												<p class="text-body-sm text-on-surface-variant">{item.locationName}</p>
-												<p class="text-body-md text-on-surface-variant">{item.description}</p>
-												{item.tags.length > 0 && (
-													<div class="flex flex-wrap gap-2">
-														{item.tags.map((tag) => (
-															<TagBadge lang={lang} tag={tag} />
-														))}
-													</div>
-												)}
+							</h2>
+							<ul class="space-y-3 list-none p-0 m-0">
+								{day.items.map((item) => (
+									<li class="bg-surface-container-low rounded-lg bronze-border p-5 ambient-card">
+										<div class="flex flex-wrap items-baseline gap-3">
+											<span class="text-headline-sm text-primary font-bold">{item.time}</span>
+											<h3 class="text-headline-sm text-on-surface">
+												{item.title}
+												{item.isDraft && <PlaceholderMark lang={lang} />}
+											</h3>
+										</div>
+										<p class="text-body-md text-on-surface-variant mt-2">{item.description}</p>
+										<p class="text-body-sm text-secondary mt-2">{item.locationName}</p>
+										{item.tags.length > 0 && (
+											<div class="flex flex-wrap gap-2 mt-3">
+												{item.tags.map((tag) => (
+													<TagBadge lang={lang} tag={tag} />
+												))}
 											</div>
-										</li>
-									))}
-								</ol>
-							</section>
-						))}
-					</div>
-				</>
+										)}
+									</li>
+								))}
+							</ul>
+						</section>
+					))}
+				</div>
 			)
 		}
 	</section>
 </Base>
-
-<script>
-	const tabs = Array.from(document.querySelectorAll('.programme-tab'));
-	const days = Array.from(document.querySelectorAll('.programme-day'));
-
-	function setActive(day: string | null) {
-		tabs.forEach((tab) => {
-			const active = tab.getAttribute('data-day') === day;
-			tab.classList.toggle('bg-primary', active);
-			tab.classList.toggle('text-white', active);
-			tab.classList.toggle('border-primary', active);
-			tab.setAttribute('aria-current', active ? 'true' : 'false');
-		});
-	}
-
-	if (tabs.length && days.length) {
-		const first = tabs[0]?.getAttribute('data-day');
-		setActive(first);
-
-		tabs.forEach((tab) => {
-			tab.addEventListener('click', () => {
-				setActive(tab.getAttribute('data-day'));
-			});
-		});
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const visible = entries
-					.filter((entry) => entry.isIntersecting)
-					.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-				if (visible?.target instanceof HTMLElement) {
-					const id = visible.target.id.replace('day-', '');
-					setActive(id);
-				}
-			},
-			{ rootMargin: '-30% 0px -55% 0px', threshold: [0.2, 0.5] },
-		);
-
-		days.forEach((day) => observer.observe(day));
-	}
-</script>

@@ -1,0 +1,136 @@
+year: 2026
+number: 2
+status: past
+name:
+  bg: 'Ulpia Serdica Festival MMXXVI'
+  en: 'Ulpia Serdica Festival MMXXVI'
+days:
+  - date: '2026-10-02'
+    status: confirmed
+    label:
+      # DRAFT-BG: needs native review
+      bg: 'Ден 1'
+      en: 'Day 1'
+    places:
+      - status: confirmed
+        name:
+          # DRAFT-BG: needs native review
+          bg: 'Тревата зад сградата на районната администрация „Връбница"'
+          en: 'The lawn behind the Vrabnitsa district administration building'
+  - date: '2026-10-03'
+    status: confirmed
+    label:
+      # DRAFT-BG: needs native review
+      bg: 'Ден 2'
+      en: 'Day 2'
+    places:
+      - status: confirmed
+        name:
+          bg: 'Археологически парк „Западна порта на Сердика"'
+          en: 'Western Gate of Serdica Archaeological Park'
+      - status: confirmed
+        name:
+          # DRAFT-BG: needs native review
+          bg: 'Парад през центъра на София'
+          en: 'Parade through the city centre'
+        note:
+          # DRAFT-BG: needs native review
+          bg: 'Кметът на район „Средец" получи символичен ключ към антична Сердика.'
+          en: 'The Sredets district mayor received a symbolic key to ancient Serdica.'
+summary:
+  # DRAFT-BG: needs native review
+  bg: 'Второ издание с прокламация във Връбница, парад в центъра и демонстрации на жива история.'
+  en: 'Second edition with a proclamation in Vrabnitsa, a city-centre parade and living-history demonstrations.'
+theme:
+  bg: 'Отбелязва 1920 години от обявяването на Сердика за муниципиум от император Траян (106 г.)'
+  en: 'Marks 1,920 years since Emperor Trajan declared Serdica a municipium (106 AD)'
+highlights:
+  - # DRAFT-BG: needs native review
+    bg: 'Пресъздадена прокламация „Посланието на император Траян и Сената към гражданите на Сердика" („От този ден обявявам Сердика за римски град!")'
+    en: 'Reenacted proclamation "The Message of Emperor Trajan and the Senate to the Citizens of Serdica" ("From this day I declare Serdica a Roman city!")'
+  - # DRAFT-BG: needs native review
+    bg: 'Парад през центъра на града и символичен ключ към антична Сердика'
+    en: 'Parade through the city centre and a symbolic key to ancient Serdica'
+  - # DRAFT-BG: needs native review
+    bg: 'Гладиаторски сблъсъци'
+    en: 'Gladiator combat'
+  - # DRAFT-BG: needs native review
+    bg: 'Римски легионери в пълно снаряжение'
+    en: 'Roman legionaries in full gear'
+stats:
+  participants:
+    value: '120'
+    status: confirmed
+  countries:
+    value: 5
+    status: confirmed
+    list:
+      # DRAFT-BG: needs native review
+      bg: 'България, Румъния, Италия, Великобритания, Испания'
+      en: 'Bulgaria, Romania, Italy, UK, Spain'
+  groups:
+    value: 11
+    status: confirmed
+  locations:
+    value: 2
+    status: confirmed
+funding:
+  bg: 'Столична община – Програма „Европа" 2026'
+  en: 'Sofia Municipality, Programme Europe 2026'
+partners:
+  - id: serdica-aeterna
+    role: organiser
+  - id: sofia-municipality-europe
+    role: funder
+  - id: sredets-district
+    role: institutional
+  - id: vrabnitsa-district
+    role: institutional
+  - id: rim-sofia
+    role: institutional
+  - id: western-gate-serdica
+    role: institutional
+  - id: dokova-dokov
+    role: sponsor
+  - id: global-solar
+    role: sponsor
+  - id: sofia-mel
+    role: sponsor
+participatingGroups:
+  - 'Legio I Italica'
+  - 'Ad Putea'
+  - 'Ulpia Pautalia'
+  - 'Wolves from Kabile (LudusLupercalis)'
+  - 'Romanitas.it'
+  - 'Gruppo Storico Romano'
+  - 'Terra Dacica Aeterna'
+  - 'Gruppo Storico Sabino'
+  - 'Legio V Macedonica (Spain)'
+  - 'Grupo Vindicta Recreación Histórica'
+  - 'Istrum Getica'
+media:
+  - outlet: 'Bulgaria ON AIR'
+    status: confirmed
+    title:
+      bg: 'Второто завръщане на Античността: Древна Сердика оживява'
+      # DRAFT-EN: needs organiser approval for English title wording
+      en: 'The second return of Antiquity: Ancient Serdica comes to life'
+additionalNotes:
+  # DRAFT — Serdica II metro photo location
+  - status: confirmed
+    text:
+      # DRAFT-BG: needs native review
+      bg: 'Снимки са правени и на метростанция „Сердика II".'
+      en: 'Photos were also taken at Serdica II metro station.'
+  # DRAFT — partner event; confirm before publishing
+  - status: confirmed
+    text:
+      # DRAFT-BG: needs native review
+      bg: 'Партньорско събитие: детска разходка из антична Сердика, 3 октомври 2026 г. в 11:00, среща пред Дома на киното (до скандинавското кино), водач Мирела Василева.'
+      en: 'Partner event: children’s tour of ancient Serdica, 3 October 2026 at 11:00, meeting point House of Cinema (by Scandinavian cinema), guide Mirella Vasileva.'
+  # DRAFT — needs organiser approval
+  - status: confirmed
+    text:
+      # DRAFT-BG: needs native review
+      bg: 'Фестивалът съвпадна с националното посрещане на останките на цар Самуил; програмата беше пренаредена и пресъздавателите се включиха в церемонията на площад „Баттенберг".'
+      en: 'The festival coincided with the national reception of the remains of Tsar Samuil; the programme was rearranged and reenactors joined the ceremony at Battenberg Square.'

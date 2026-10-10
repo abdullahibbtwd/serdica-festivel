@@ -1,0 +1,254 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import PlaceholderMark from '../../../components/PlaceholderMark.astro';
+import { isLang, t } from '../../../i18n/utils';
+import type { Lang } from '../../../i18n/ui';
+import { isPublishedRights, isPublishedStatus } from '../../../lib/drafts';
+import {
+	confirmedStat,
+	formatEditionDates,
+	visibleDays,
+	visiblePlaces,
+	type EditionData,
+} from '../../../lib/editions';
+import { hasPublicProgramme } from '../../../lib/programme';
+
+export async function getStaticPaths() {
+	const editions = await getCollection('editions');
+	const langs = ['bg', 'en'] as const;
+	return langs.flatMap((lang) =>
+		editions.map((edition) => ({
+			params: { lang, year: String(edition.data.year) },
+			props: { edition: edition.data as EditionData },
+		})),
+	);
+}
+
+const { lang: langParam } = Astro.params;
+if (!langParam || !isLang(langParam)) {
+	throw new Error(`Unsupported language: ${langParam}`);
+}
+const lang: Lang = langParam;
+const { edition } = Astro.props;
+
+const festivalEntry = await getEntry('festival', 'festival');
+if (!festivalEntry) {
+	throw new Error('Missing festival.yaml');
+}
+const festival = festivalEntry.data;
+const showProgramme = await hasPublicProgramme();
+
+const days = visibleDays(edition);
+const participants = confirmedStat(edition.stats?.participants);
+const countries = confirmedStat(edition.stats?.countries);
+const groupsStat = confirmedStat(edition.stats?.groups);
+const locationsStat = confirmedStat(edition.stats?.locations);
+
+const partnerEntries = await getCollection('partners');
+const partners = edition.partners
+	.map((ref) => {
+		const entry = partnerEntries.find((p) => p.id === ref.id);
+		if (!entry || !isPublishedStatus(entry.data.status)) return null;
+		return {
+			name: entry.data.name[lang],
+			role: ref.role,
+			isDraft: entry.data.status === 'draft',
+		};
+	})
+	.filter(Boolean) as Array<{ name: string; role: string; isDraft: boolean }>;
+
+const hasGallery = (await getCollection('gallery')).some(
+	(entry) => entry.data.edition === edition.year && isPublishedRights(entry.data.rightsConfirmed),
+);
+
+const media = (edition.media ?? []).filter((m) => isPublishedStatus(m.status));
+const notes = (edition.additionalNotes ?? []).filter((n) => isPublishedStatus(n.status));
+---
+
+<Base
+	lang={lang}
+	title={t(lang, 'edition.metaTitle', { year: edition.year })}
+	description={t(lang, 'edition.metaDescription', { year: edition.year })}
+	festival={festival}
+	pastEditions={[edition]}
+	showProgramme={showProgramme}
+>
+	<section class="py-space-xl lg:py-28 bg-background">
+		<div class="max-w-3xl mx-auto px-4 md:px-margin space-y-8">
+			<div>
+				<a class="text-label-md text-secondary hover:underline" href={`/${lang}/#editions`}>
+					← {t(lang, 'nav.editions')}
+				</a>
+				<p class="text-eyebrow text-primary mt-4">{edition.year}</p>
+				<h1 class="text-headline-lg-mobile md:text-headline-lg text-on-surface mt-2">{edition.name[lang]}</h1>
+				<p class="text-body-lg text-secondary font-semibold mt-2">{formatEditionDates(edition, lang)}</p>
+				<p class="text-body-md text-on-surface-variant mt-4">{edition.summary[lang]}</p>
+			</div>
+
+			{
+				edition.theme && (
+					<p class="text-body-md italic border-l-4 border-l-primary pl-4 text-on-surface">{edition.theme[lang]}</p>
+				)
+			}
+
+			{(participants || countries || groupsStat || locationsStat) && (
+				<div class="flex flex-wrap gap-3">
+					{participants && (
+						<span class="px-3 py-1 rounded bronze-border text-label-sm font-semibold">
+							{participants.value} {t(lang, 'about.stats.participants')}
+						</span>
+					)}
+					{countries && (
+						<span class="px-3 py-1 rounded bronze-border text-label-sm font-semibold">
+							{countries.value} {t(lang, 'about.stats.countries')}
+							{countries.list && (
+								<span class="font-normal text-on-surface-variant"> ({countries.list[lang]})</span>
+							)}
+						</span>
+					)}
+					{groupsStat && (
+						<span class="px-3 py-1 rounded bronze-border text-label-sm font-semibold">
+							{groupsStat.value} {t(lang, 'about.stats.groups')}
+						</span>
+					)}
+					{locationsStat && (
+						<span class="px-3 py-1 rounded bronze-border text-label-sm font-semibold">
+							{locationsStat.value} {t(lang, 'about.stats.locations')}
+						</span>
+					)}
+				</div>
+			)}
+
+			<div>
+				<h2 class="text-headline-sm text-on-surface mb-3">{t(lang, 'editions.title')}</h2>
+				<ul class="space-y-4 list-none p-0 m-0">
+					{days.map((day) => (
+						<li class="bg-surface-container-low rounded-lg bronze-border p-4">
+							<p class="font-semibold text-on-surface">
+								{day.label[lang]} · {day.date}
+								{day.status === 'draft' && <PlaceholderMark lang={lang} />}
+							</p>
+							{visiblePlaces(day).map((place) => (
+								<p class="text-body-md text-on-surface-variant mt-1">
+									{place.name[lang]}
+									{place.status === 'draft' && <PlaceholderMark lang={lang} />}
+									{place.note && <span class="block text-body-sm mt-1">{place.note[lang]}</span>}
+								</p>
+							))}
+						</li>
+					))}
+				</ul>
+			</div>
+
+			{
+				edition.highlights && edition.highlights.length > 0 && (
+					<div>
+						<h2 class="text-headline-sm text-on-surface mb-3">{t(lang, 'editions.highlights')}</h2>
+						<ul class="list-disc pl-5 space-y-1 text-body-md text-on-surface-variant">
+							{edition.highlights.map((h) => (
+								<li>{h[lang]}</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+
+			{
+				edition.visitorActivities && edition.visitorActivities.length > 0 && (
+					<div>
+						<h2 class="text-headline-sm text-on-surface mb-3">{t(lang, 'editions.activities')}</h2>
+						<ul class="list-disc pl-5 space-y-1 text-body-md text-on-surface-variant">
+							{edition.visitorActivities.map((a) => (
+								<li>{a[lang]}</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+
+			{
+				edition.funding && (
+					<p class="text-body-md text-on-surface-variant">
+						<strong>{t(lang, 'partners.funder')}:</strong> {edition.funding[lang]}
+					</p>
+				)
+			}
+
+			{
+				partners.length > 0 && (
+					<div>
+						<h2 class="text-headline-sm text-on-surface mb-3">{t(lang, 'partners.title')}</h2>
+						<ul class="space-y-2 list-none p-0 m-0">
+							{partners.map((p) => (
+								<li class="text-body-md text-on-surface-variant">
+									{p.name}
+									{p.isDraft && <PlaceholderMark lang={lang} />}
+								</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+
+			{
+				edition.participatingGroups && edition.participatingGroups.length > 0 && (
+					<div>
+						<h2 class="text-headline-sm text-on-surface mb-3">{t(lang, 'groups.lead')}</h2>
+						<ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 list-none p-0 m-0">
+							{edition.participatingGroups.map((g) => (
+								<li class="bronze-border rounded px-3 py-2 text-body-sm">{g}</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+
+			{
+				edition.weatherNote && (
+					<p class="text-body-sm text-on-surface-variant italic">{edition.weatherNote[lang]}</p>
+				)
+			}
+
+			{
+				notes.map((note) => (
+					<p class="text-body-sm text-on-surface-variant">
+						{note.text[lang]}
+						{note.status === 'draft' && <PlaceholderMark lang={lang} />}
+					</p>
+				))
+			}
+
+			{
+				media.length > 0 && (
+					<div>
+						<h2 class="text-headline-sm text-on-surface mb-3">{t(lang, 'media.title')}</h2>
+						<ul class="space-y-2 list-none p-0 m-0">
+							{media.map((m) => (
+								<li class="text-body-md">
+									{m.outlet}
+									{m.title && <span class="text-on-surface-variant"> — {m.title[lang]}</span>}
+									{m.status === 'draft' && <PlaceholderMark lang={lang} />}
+								</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+		</div>
+	</section>
+
+	{
+		hasGallery && (
+			<section class="pb-space-xl lg:pb-28 bg-dark-bg text-center">
+				<a
+					class="inline-flex items-center gap-2 px-8 py-3.5 rounded bronze-border-dark bg-dark-surface text-badge-free hover:bg-[#26231F] font-label-md uppercase tracking-wider font-semibold transition-all"
+					href={`/${lang}/gallery/?year=${edition.year}`}
+				>
+					{t(lang, 'gallery.seeAll')} · {edition.year}
+				</a>
+			</section>
+		)
+	}
+</Base>
+

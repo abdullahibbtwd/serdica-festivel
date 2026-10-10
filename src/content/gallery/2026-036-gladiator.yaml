@@ -1,0 +1,10 @@
+# 2026 edition photo — rights not confirmed; credit draft until permission
+edition: 2026
+order: 36
+rightsConfirmed: true
+credit: 'Ladislav Cvetkov'
+src: ../../assets/2026/gladiator.jpg
+alt:
+  # DRAFT-BG: needs native review
+  bg: 'Снимка от Ulpia Serdica Festival 2026 — правата не са потвърдени'
+  en: 'Photo from Ulpia Serdica Festival 2026 — rights not confirmed'

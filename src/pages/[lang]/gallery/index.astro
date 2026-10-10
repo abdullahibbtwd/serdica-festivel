@@ -1,0 +1,54 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Gallery from '../../../components/Gallery.astro';
+import { isLang, t } from '../../../i18n/utils';
+import type { Lang } from '../../../i18n/ui';
+import { isPublishedRights } from '../../../lib/drafts';
+import { hasPublicProgramme } from '../../../lib/programme';
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'bg' } }, { params: { lang: 'en' } }];
+}
+
+const { lang: langParam } = Astro.params;
+if (!langParam || !isLang(langParam)) {
+	throw new Error(`Unsupported language: ${langParam}`);
+}
+const lang: Lang = langParam;
+
+const festivalEntry = await getEntry('festival', 'festival');
+if (!festivalEntry) {
+	throw new Error('Missing festival.yaml');
+}
+const festival = festivalEntry.data;
+const showProgramme = await hasPublicProgramme();
+
+const yearParam = Astro.url.searchParams.get('year');
+const initialFilter =
+	yearParam === '2025' || yearParam === '2026' ? yearParam : ('all' as const);
+
+const galleryItems = (await getCollection('gallery'))
+	.filter((entry) => isPublishedRights(entry.data.rightsConfirmed))
+	.sort((a, b) => b.data.edition - a.data.edition || a.data.order - b.data.order)
+	.map((entry) => ({
+		id: entry.id,
+		src: entry.data.src,
+		edition: entry.data.edition,
+	}));
+---
+
+<Base
+	lang={lang}
+	title={t(lang, 'gallery.metaTitle')}
+	description={t(lang, 'gallery.metaDescription')}
+	festival={festival}
+	showProgramme={showProgramme}
+>
+	<div class="pt-6 px-4 md:px-margin max-w-7xl mx-auto">
+		<a class="text-label-md text-secondary hover:underline" href={`/${lang}/#gallery`}>
+			← {t(lang, 'nav.home')}
+		</a>
+	</div>
+	<Gallery lang={lang} items={galleryItems} variant="full" initialFilter={initialFilter} />
+</Base>

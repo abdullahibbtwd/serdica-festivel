@@ -1,15 +1,15 @@
 ---
-import { Icon } from 'astro-icon/components';
 import type { Lang } from '../i18n/ui';
 import { t } from '../i18n/utils';
 import PlaceholderMark from './PlaceholderMark.astro';
 
+type Role = 'organiser' | 'funder' | 'institutional' | 'sponsor';
+
 interface PartnerItem {
 	name: string;
-	subtitle?: string;
-	url: string;
-	icon?: string;
-	group: 'organiser' | 'institutional' | 'sponsor';
+	role: Role;
+	editions: number[];
+	url?: string;
 	isDraft: boolean;
 }
 
@@ -19,9 +19,21 @@ interface Props {
 }
 
 const { lang, items } = Astro.props;
-const organisers = items.filter((item) => item.group === 'organiser');
-const institutional = items.filter((item) => item.group === 'institutional');
-const sponsors = items.filter((item) => item.group === 'sponsor');
+
+const roleOrder: Role[] = ['organiser', 'funder', 'institutional', 'sponsor'];
+const roleKey: Record<Role, 'partners.organiser' | 'partners.funder' | 'partners.institutional' | 'partners.sponsors'> = {
+	organiser: 'partners.organiser',
+	funder: 'partners.funder',
+	institutional: 'partners.institutional',
+	sponsor: 'partners.sponsors',
+};
+
+const grouped = roleOrder
+	.map((role) => ({
+		role,
+		items: items.filter((item) => item.role === role),
+	}))
+	.filter((group) => group.items.length > 0);
 ---
 
 <section class="py-space-xl lg:py-28 bg-background" id="partners" data-component="Partners">
@@ -40,112 +52,45 @@ const sponsors = items.filter((item) => item.group === 'sponsor');
 
 		<div class="space-y-10">
 			{
-				organisers.length > 0 && (
-					<div>
-						<span class="text-eyebrow uppercase text-primary font-bold tracking-widest block mb-4">
-							{t(lang, 'partners.organiser')}
-						</span>
-						{organisers.map((partner) => (
-							<a
-								href={partner.url}
-								rel="noopener noreferrer"
-								class="bg-surface-container-low rounded-xl bronze-border p-6 lg:p-8 flex flex-col md:flex-row items-center gap-6 ambient-card hover:border-secondary transition-colors"
-							>
-								{partner.icon && (
-									<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center bronze-border shrink-0">
-										<Icon
-											name={`material-symbols:${partner.icon}`}
-											class="text-4xl text-primary"
-											aria-hidden="true"
-										/>
-									</div>
-								)}
-								<div class="space-y-1 text-center md:text-left">
-									<h3 class="text-headline-sm text-on-surface font-semibold">
-										{partner.name}
-										{partner.isDraft && <PlaceholderMark lang={lang} />}
-									</h3>
-									{partner.subtitle && (
-										<p class="text-body-md text-on-surface-variant">{partner.subtitle}</p>
-									)}
-								</div>
-							</a>
-						))}
-					</div>
-				)
-			}
-
-			{
-				institutional.length > 0 && (
+				grouped.map((group) => (
 					<div>
 						<span class="text-eyebrow uppercase text-secondary font-bold tracking-widest block mb-4">
-							{t(lang, 'partners.institutional')}
+							{t(lang, roleKey[group.role])}
 						</span>
-						<ul class="grid grid-cols-1 md:grid-cols-3 gap-space-lg list-none p-0 m-0">
-							{institutional.map((partner) => (
-								<li>
-									<a
-										href={partner.url}
-										rel="noopener noreferrer"
-										class="bg-surface-container-low rounded-lg bronze-border p-5 flex flex-col justify-between ambient-card hover:border-secondary transition-colors h-full min-h-[110px]"
-									>
-										<div class="flex items-center gap-3 mb-2">
-											{partner.icon && (
-												<Icon
-													name={`material-symbols:${partner.icon}`}
-													class="text-primary shrink-0"
-													aria-hidden="true"
-												/>
-											)}
-											<h4 class="text-headline-sm text-on-surface text-lg">
-												{partner.name}
-												{partner.isDraft && <PlaceholderMark lang={lang} />}
-											</h4>
-										</div>
-										{partner.subtitle && (
-											<p class="text-body-sm text-on-surface-variant">{partner.subtitle}</p>
+						<ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg list-none p-0 m-0">
+							{group.items.map((partner) => {
+								const inner = (
+									<>
+										<span class="font-semibold text-on-surface text-body-md">
+											{partner.name}
+											{partner.isDraft && <PlaceholderMark lang={lang} />}
+										</span>
+										<span class="text-xs text-secondary font-bold uppercase tracking-wider mt-2 block">
+											{t(lang, 'partners.yearLabel')}: {partner.editions.sort().join(', ')}
+										</span>
+									</>
+								);
+								return (
+									<li>
+										{partner.url ? (
+											<a
+												href={partner.url}
+												rel="noopener noreferrer"
+												class="bg-surface-container-low rounded-lg bronze-border p-5 block ambient-card hover:border-secondary transition-colors h-full"
+											>
+												{inner}
+											</a>
+										) : (
+											<div class="bg-surface-container-low rounded-lg bronze-border p-5 ambient-card h-full">
+												{inner}
+											</div>
 										)}
-									</a>
-								</li>
-							))}
+									</li>
+								);
+							})}
 						</ul>
 					</div>
-				)
-			}
-
-			{
-				sponsors.length > 0 && (
-					<div>
-						<span class="text-eyebrow uppercase text-secondary font-bold tracking-widest block mb-4">
-							{t(lang, 'partners.sponsors')}
-						</span>
-						<ul class="grid grid-cols-1 md:grid-cols-3 gap-space-lg list-none p-0 m-0">
-							{sponsors.map((partner) => (
-								<li>
-									<a
-										href={partner.url}
-										rel="noopener noreferrer"
-										class="bg-surface-container-low rounded-lg bronze-border p-5 flex items-center justify-between ambient-card hover:border-secondary transition-colors h-full"
-									>
-										<div class="flex items-center gap-3 min-w-0">
-											{partner.icon && (
-												<Icon
-													name={`material-symbols:${partner.icon}`}
-													class="text-secondary shrink-0"
-													aria-hidden="true"
-												/>
-											)}
-											<span class="font-semibold text-on-surface text-body-md truncate">
-												{partner.name}
-												{partner.isDraft && <PlaceholderMark lang={lang} />}
-											</span>
-										</div>
-									</a>
-								</li>
-							))}
-						</ul>
-					</div>
-				)
+				))
 			}
 		</div>
 	</div>

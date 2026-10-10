@@ -1,0 +1,39 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+	groups: string[];
+	showFiveCountriesHeading?: boolean;
+}
+
+const { lang, groups, showFiveCountriesHeading = false } = Astro.props;
+---
+
+{
+	groups.length > 0 && (
+		<section class="py-space-xl lg:py-28 bg-surface-container-low border-y border-outline-variant/40" id="groups">
+			<div class="max-w-7xl mx-auto px-4 md:px-margin">
+				<div class="max-w-2xl mb-12">
+					<div class="inline-block px-2.5 py-1 rounded mb-3 bronze-border bg-surface text-secondary text-eyebrow tracking-widest uppercase">
+						{t(lang, 'groups.eyebrow')}
+					</div>
+					<h2 class="text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight font-semibold">
+						{showFiveCountriesHeading ? t(lang, 'groups.title') : t(lang, 'groups.lead')}
+					</h2>
+					{showFiveCountriesHeading && (
+						<p class="text-body-md text-on-surface-variant mt-2">{t(lang, 'groups.lead')}</p>
+					)}
+				</div>
+				<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 list-none p-0 m-0">
+					{groups.map((group) => (
+						<li class="bg-surface rounded-lg bronze-border px-4 py-3 text-body-md text-on-surface font-medium ambient-card">
+							{group}
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+	)
+}

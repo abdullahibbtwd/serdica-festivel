@@ -8,11 +8,11 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import type { Lang } from '../i18n/ui';
 import { getLocalizedPath, t } from '../i18n/utils';
-import type { UiKey } from '../i18n/ui';
+import { editionStartEnd, type EditionData } from '../lib/editions';
 
 interface FestivalData {
-	edition: string;
-	dates?: { bg: string; en: string };
+	mode: 'between-editions' | 'upcoming';
+	nextEdition: 2025 | 2026 | null;
 	admission: 'unknown' | 'free' | 'paid';
 	email: string;
 	facebook?: string;
@@ -20,58 +20,82 @@ interface FestivalData {
 		title: { bg: string; en: string };
 		tagline: { bg: string; en: string };
 	};
-	stats: {
-		participants: number;
-		countries: number;
-		days?: number;
-	};
 }
 
 interface Props {
 	lang: Lang;
-	titleKey: UiKey;
-	descriptionKey: UiKey;
+	title: string;
+	description: string;
 	festival: FestivalData;
+	pastEditions?: EditionData[];
+	showProgramme?: boolean;
 }
 
-const { lang, titleKey, descriptionKey, festival } = Astro.props;
-const title = t(lang, titleKey);
-const description = t(lang, descriptionKey);
+const {
+	lang,
+	title,
+	description,
+	festival,
+	pastEditions = [],
+	showProgramme = false,
+} = Astro.props;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const alternateBg = new URL(getLocalizedPath(Astro.url.pathname, 'bg'), Astro.site);
 const alternateEn = new URL(getLocalizedPath(Astro.url.pathname, 'en'), Astro.site);
 const ogImage = new URL('/og/default.svg', Astro.site);
 
-const eventJsonLd: Record<string, unknown> = {
+const organizationJsonLd: Record<string, unknown> = {
 	'@context': 'https://schema.org',
-	'@type': 'Event',
-	name: festival.hero.title[lang],
-	description: festival.hero.tagline[lang],
-	eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-	eventStatus: 'https://schema.org/EventScheduled',
-	image: [ogImage.href],
-	organizer: {
-		'@type': 'Organization',
-		name: t(lang, 'brand.name'),
-		url: Astro.site?.href,
-		email: festival.email,
+	'@type': 'Organization',
+	name: 'Serdica Aeterna Association',
+	alternateName: 'Сдружение „Сердика Етерна"',
+	url: Astro.site?.href,
+	email: festival.email,
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: t(lang, 'seo.city'),
+		addressCountry: 'BG',
 	},
-	location: {
-		'@type': 'Place',
-		name: festival.hero.title[lang],
-		address: {
-			'@type': 'PostalAddress',
-			addressLocality: t(lang, 'seo.city'),
-			addressCountry: 'BG',
-		},
-	},
-	isAccessibleForFree: festival.admission === 'free',
-	inLanguage: [lang === 'bg' ? 'bg-BG' : 'en-GB'],
 };
 
-if (festival.dates) {
-	eventJsonLd.startDate = festival.dates[lang];
+if (festival.facebook) {
+	organizationJsonLd.sameAs = [festival.facebook];
 }
+
+const eventJsonLdList = pastEditions
+	.filter((edition) => edition.status === 'past')
+	.map((edition) => {
+		const { startDate, endDate } = editionStartEnd(edition);
+		const event: Record<string, unknown> = {
+			'@context': 'https://schema.org',
+			'@type': 'Event',
+			name: edition.name[lang],
+			description: edition.summary[lang],
+			eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+			image: [ogImage.href],
+			organizer: {
+				'@type': 'Organization',
+				name: 'Serdica Aeterna Association',
+				email: festival.email,
+			},
+			location: {
+				'@type': 'Place',
+				name: t(lang, 'seo.city'),
+				address: {
+					'@type': 'PostalAddress',
+					addressLocality: t(lang, 'seo.city'),
+					addressCountry: 'BG',
+				},
+			},
+			inLanguage: [lang === 'bg' ? 'bg-BG' : 'en-GB'],
+		};
+		if (startDate) event.startDate = startDate;
+		if (endDate) event.endDate = endDate;
+		return event;
+	});
+
+const jsonLdGraph = [organizationJsonLd, ...eventJsonLdList];
 ---
 
 <!doctype html>
@@ -104,14 +128,15 @@ if (festival.dates) {
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage.href} />
 
-		<script type="application/ld+json" set:html={JSON.stringify(eventJsonLd)} />
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLdGraph)} />
 	</head>
 	<body class="bg-background text-on-background antialiased flex flex-col min-h-screen">
 		<a class="skip-link" href="#main">{t(lang, 'skip.toContent')}</a>
 		<Header
 			lang={lang}
 			pathname={Astro.url.pathname}
-			showFreeAdmission={festival.admission === 'free'}
+			showFreeAdmission={festival.admission === 'free' && festival.mode === 'upcoming'}
+			showProgramme={showProgramme}
 		/>
 		<main id="main" class="flex-grow w-full max-w-[100vw] overflow-x-hidden">
 			<slot />
@@ -120,7 +145,8 @@ if (festival.dates) {
 			lang={lang}
 			pathname={Astro.url.pathname}
 			email={festival.email}
-			showFreeAdmission={festival.admission === 'free'}
+			showFreeAdmission={festival.admission === 'free' && festival.mode === 'upcoming'}
+			showProgramme={showProgramme}
 		/>
 	</body>
 </html>

@@ -13,9 +13,13 @@ interface Props {
 	eyebrow: string;
 	image: ImageMetadata;
 	imageAlt: string;
-	dates?: string;
+	/** Compact latest-edition date line, e.g. "2–3 October 2026" */
+	latestEditionDates?: string;
+	mode: 'between-editions' | 'upcoming';
+	/** Upcoming edition date string when mode is upcoming */
+	upcomingDates?: string;
 	showFreeAdmission?: boolean;
-	locationHint?: string;
+	facebookUrl?: string;
 	showDraftMarkers?: boolean;
 }
 
@@ -26,9 +30,11 @@ const {
 	eyebrow,
 	image,
 	imageAlt,
-	dates,
+	latestEditionDates,
+	mode,
+	upcomingDates,
 	showFreeAdmission = false,
-	locationHint,
+	facebookUrl,
 	showDraftMarkers = false,
 } = Astro.props;
 ---
@@ -57,7 +63,6 @@ const {
 			>
 				<span class="w-2 h-2 rounded-full bg-dark-accent motion-safe:animate-pulse" aria-hidden="true"></span>
 				<span class="text-eyebrow text-badge-free tracking-widest uppercase">{eyebrow}</span>
-				{showDraftMarkers && <PlaceholderMark lang={lang} />}
 			</div>
 
 			<div class="space-y-3">
@@ -72,21 +77,25 @@ const {
 			<div
 				class="flex flex-wrap items-center gap-y-3 gap-x-6 py-4 border-y border-accent-2/30 text-body-md text-dark-muted"
 			>
-				<div class="flex items-center gap-2">
-					<Icon name="material-symbols:calendar-month" class="text-badge-free" aria-hidden="true" />
-					<span class="text-surface-bright font-semibold">
-						{dates ?? t(lang, 'hero.dateTba')}
-						{!dates && showDraftMarkers && <PlaceholderMark lang={lang} />}
-					</span>
-				</div>
 				{
-					locationHint && (
+					mode === 'upcoming' && upcomingDates ? (
 						<div class="flex items-center gap-2">
-							<Icon name="material-symbols:pin-drop" class="text-badge-free" aria-hidden="true" />
-							<span>
-								{locationHint}
-								{showDraftMarkers && <PlaceholderMark lang={lang} />}
+							<Icon name="material-symbols:calendar-month" class="text-badge-free" aria-hidden="true" />
+							<span class="text-surface-bright font-semibold">{upcomingDates}</span>
+						</div>
+					) : latestEditionDates ? (
+						<div class="flex items-center gap-2">
+							<Icon name="material-symbols:calendar-month" class="text-badge-free" aria-hidden="true" />
+							<span class="text-surface-bright font-semibold">
+								{t(lang, 'hero.latestEdition')}: {latestEditionDates} · {t(lang, 'seo.city')}
 							</span>
+						</div>
+					) : null
+				}
+				{
+					mode === 'between-editions' && (
+						<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded bronze-border-dark text-badge-free font-bold text-label-sm tracking-wider">
+							{t(lang, 'hero.nextTba')}
 						</div>
 					)
 				}
@@ -95,6 +104,7 @@ const {
 						<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-badge-free text-on-background font-bold text-label-sm tracking-wider">
 							<Icon name="material-symbols:verified" class="text-xs" aria-hidden="true" />
 							{t(lang, 'admission.free')}
+							{showDraftMarkers && <PlaceholderMark lang={lang} />}
 						</div>
 					)
 				}
@@ -103,18 +113,24 @@ const {
 			<div class="flex flex-wrap items-center gap-4 pt-4">
 				<a
 					class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded bg-primary-container text-white text-label-md uppercase tracking-wider font-bold hover:bg-[#7f0009] transition-all shadow-md active:scale-[0.98]"
-					href={`/${lang}/programme/`}
+					href={`/${lang}/#editions`}
 				>
 					<Icon name="material-symbols:event-note" class="text-lg" aria-hidden="true" />
-					<span>{t(lang, 'button.viewProgramme')}</span>
+					<span>{t(lang, 'button.seeEditions')}</span>
 				</a>
-				<a
-					class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded bronze-border-dark text-dark-text hover:bg-dark-surface hover:text-badge-free text-label-md uppercase tracking-wider font-semibold transition-all"
-					href={`/${lang}/#locations`}
-				>
-					<Icon name="material-symbols:map" class="text-lg" aria-hidden="true" />
-					<span>{t(lang, 'button.getDirections')}</span>
-				</a>
+				{
+					facebookUrl && (
+						<a
+							class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded bronze-border-dark text-dark-text hover:bg-dark-surface hover:text-badge-free text-label-md uppercase tracking-wider font-semibold transition-all"
+							href={facebookUrl}
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							<Icon name="material-symbols:public" class="text-lg" aria-hidden="true" />
+							<span>{t(lang, 'button.followFacebook')}</span>
+						</a>
+					)
+				}
 			</div>
 		</div>
 	</div>

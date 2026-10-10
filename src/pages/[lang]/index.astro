@@ -2,16 +2,23 @@
 import { getCollection, getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
+import Editions from '../../components/Editions.astro';
 import ExpectGrid from '../../components/ExpectGrid.astro';
-import Highlights from '../../components/Highlights.astro';
-import Locations from '../../components/Locations.astro';
+import ParticipatingGroups from '../../components/ParticipatingGroups.astro';
 import About from '../../components/About.astro';
 import Gallery from '../../components/Gallery.astro';
 import Partners from '../../components/Partners.astro';
+import Media from '../../components/Media.astro';
 import Contact from '../../components/Contact.astro';
-import { isLang } from '../../i18n/utils';
+import { isLang, t } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import { isPublishedRights, isPublishedStatus, showDrafts } from '../../lib/drafts';
+import {
+	confirmedStat,
+	formatEditionDatesCompact,
+	type EditionData,
+} from '../../lib/editions';
+import { hasPublicProgramme } from '../../lib/programme';
 
 export function getStaticPaths() {
 	return [{ params: { lang: 'bg' } }, { params: { lang: 'en' } }];
@@ -29,6 +36,25 @@ if (!festivalEntry) {
 }
 const festival = festivalEntry.data;
 const draftsVisible = showDrafts();
+const showProgramme = await hasPublicProgramme();
+
+const editions = (await getCollection('editions'))
+	.map((entry) => entry.data as EditionData)
+	.sort((a, b) => b.year - a.year);
+
+const latestPast = editions.find((e) => e.status === 'past');
+const latestDates = latestPast ? formatEditionDatesCompact(latestPast, lang) : undefined;
+
+const edition2026 = editions.find((e) => e.year === 2026);
+const countriesConfirmed = confirmedStat(edition2026?.stats?.countries);
+const participantsConfirmed = confirmedStat(edition2026?.stats?.participants);
+const groupsConfirmed = confirmedStat(edition2026?.stats?.groups);
+
+const aboutEntry = await getEntry('about', 'about');
+if (!aboutEntry) {
+	throw new Error('Missing about content entry');
+}
+const about = aboutEntry.data;
 
 const expectItems = (await getCollection('expect'))
 	.filter((entry) => isPublishedStatus(entry.data.status))
@@ -45,67 +71,67 @@ const expectItems = (await getCollection('expect'))
 		isDraft: entry.data.status === 'draft',
 	}));
 
-const locations = await getCollection('locations');
-const locationName = (id: string) => {
-	const match = locations.find((loc) => loc.id === id);
-	return match ? match.data.name[lang] : id;
-};
-
-const programmeDays = await getCollection('programme');
-const highlightItems = programmeDays
-	.flatMap((day) =>
-		day.data.items
-			.filter((item) => item.highlight && isPublishedStatus(item.status))
-			.map((item) => ({
-				time: item.time,
-				title: item.title[lang],
-				description: item.description[lang],
-				locationName: locationName(item.location),
-				tags: item.tags,
-				isDraft: item.status === 'draft',
-			})),
-	)
-	.sort((a, b) => a.time.localeCompare(b.time));
-
-const locationItems = locations
-	.filter((entry) => isPublishedStatus(entry.data.status))
-	.map((entry) => ({
-		name: entry.data.name[lang],
-		address: entry.data.address[lang],
-		schedule: entry.data.schedule?.[lang],
-		transport: entry.data.transport?.[lang],
-		mapUrl: entry.data.mapUrl,
-		isDraft: entry.data.status === 'draft',
-		mapPin: entry.data.mapPin,
-	}));
-
-const galleryItems = (await getCollection('gallery'))
+const allGallery = (await getCollection('gallery'))
 	.filter((entry) => isPublishedRights(entry.data.rightsConfirmed))
-	.sort((a, b) => a.data.order - b.data.order)
-	.map((entry) => ({
-		id: entry.id,
-		src: entry.data.src,
-		alt: entry.data.alt[lang],
-		caption: entry.data.caption?.[lang],
-		isDraft: !entry.data.rightsConfirmed,
-	}));
+	.sort((a, b) => a.data.order - b.data.order);
 
-const partnerItems = (await getCollection('partners'))
+const galleryPreview = [
+	...allGallery.filter((e) => e.data.edition === 2026).slice(0, 4),
+	...allGallery.filter((e) => e.data.edition === 2025).slice(0, 4),
+].map((entry) => ({
+	id: entry.id,
+	src: entry.data.src,
+	edition: entry.data.edition,
+}));
+
+const partnerEntries = await getCollection('partners');
+
+const partnerItems = partnerEntries
 	.filter((entry) => isPublishedStatus(entry.data.status))
 	.map((entry) => ({
 		name: entry.data.name[lang],
-		subtitle: entry.data.subtitle?.[lang],
+		role: entry.data.role,
+		editions: entry.data.editions,
 		url: entry.data.url,
-		icon: entry.data.icon,
-		group: entry.data.group,
 		isDraft: entry.data.status === 'draft',
-	}));
+	}))
+	.sort((a, b) => a.name.localeCompare(b.name, lang));
 
-const firstConfirmedLocation = locationItems.find((item) => !item.isDraft);
-const locationHint = firstConfirmedLocation?.name;
+const mediaItems = editions.flatMap((edition) =>
+	(edition.media ?? [])
+		.filter((item) => isPublishedStatus(item.status))
+		.map((item) => ({
+			outlet: item.outlet,
+			title: item.title?.[lang],
+			url: item.url,
+			editionYear: edition.year,
+			isDraft: item.status === 'draft',
+		})),
+);
+
+const showFacebook =
+	Boolean(festival.facebook) &&
+	(festival.facebookStatus !== 'draft' || draftsVisible);
+const showPhone =
+	Boolean(festival.phone) && (festival.phoneStatus !== 'draft' || draftsVisible);
+
+// Resolve upcoming dates if mode flips later
+let upcomingDates: string | undefined;
+if (festival.mode === 'upcoming' && festival.nextEdition) {
+	const next = editions.find((e) => e.year === festival.nextEdition);
+	if (next) upcomingDates = formatEditionDatesCompact(next, lang);
+}
+
 ---
 
-<Base lang={lang} titleKey="home.metaTitle" descriptionKey="home.metaDescription" festival={festival}>
+<Base
+	lang={lang}
+	title={t(lang, 'home.metaTitle')}
+	description={t(lang, 'home.metaDescription')}
+	festival={festival}
+	pastEditions={editions.filter((e) => e.status === 'past')}
+	showProgramme={showProgramme}
+>
 	<Hero
 		lang={lang}
 		title={festival.hero.title[lang]}
@@ -113,38 +139,56 @@ const locationHint = firstConfirmedLocation?.name;
 		eyebrow={festival.hero.eyebrow[lang]}
 		image={festival.hero.image}
 		imageAlt={festival.hero.imageAlt[lang]}
-		dates={festival.dates?.[lang]}
-		showFreeAdmission={festival.admission === 'free'}
-		locationHint={locationHint}
+		latestEditionDates={latestDates}
+		mode={festival.mode}
+		upcomingDates={upcomingDates}
+		showFreeAdmission={festival.admission === 'free' && festival.mode === 'upcoming'}
+		facebookUrl={showFacebook ? festival.facebook : undefined}
 		showDraftMarkers={draftsVisible}
 	/>
 
-	<ExpectGrid lang={lang} items={expectItems} />
+	<Editions lang={lang} editions={editions} />
 
-	<Highlights lang={lang} items={highlightItems} />
+	{expectItems.length > 0 && <ExpectGrid lang={lang} items={expectItems} />}
 
-	<Locations
-		lang={lang}
-		lead={festival.locationsIntro?.[lang]}
-		items={locationItems}
-	/>
+	{
+		edition2026?.participatingGroups && edition2026.participatingGroups.length > 0 && (
+			<ParticipatingGroups
+				lang={lang}
+				groups={edition2026.participatingGroups}
+				showFiveCountriesHeading={Boolean(countriesConfirmed)}
+			/>
+		)
+	}
 
 	<About
 		lang={lang}
-		eyebrow={festival.about.eyebrow[lang]}
-		title={festival.about.title[lang]}
-		quote={festival.about.quote?.[lang]}
-		paragraphs={festival.about.paragraphs.map((p) => p[lang])}
-		image={festival.about.image}
-		imageAlt={festival.about.imageAlt[lang]}
-		imageCredit={festival.about.imageCredit?.[lang]}
-		stats={festival.stats}
-		showDraftMarkers={draftsVisible}
+		eyebrow={about.eyebrow[lang]}
+		title={about.title[lang]}
+		lead={about.lead[lang]}
+		mission={about.mission[lang]}
+		paragraphs={about.paragraphs.map((p) => p[lang])}
+		image={about.image}
+		imageAlt={about.imageAlt?.[lang]}
+		stats={{
+			participants: participantsConfirmed?.value,
+			countries: countriesConfirmed?.value,
+			groups: groupsConfirmed?.value,
+		}}
 	/>
 
-	<Gallery lang={lang} items={galleryItems} />
+	<Gallery lang={lang} items={galleryPreview} variant="preview" />
 
 	<Partners lang={lang} items={partnerItems} />
 
-	<Contact lang={lang} email={festival.email} facebook={festival.facebook} />
+	<Media lang={lang} items={mediaItems} />
+
+	<Contact
+		lang={lang}
+		email={festival.email}
+		facebook={showFacebook ? festival.facebook : undefined}
+		facebookIsDraft={festival.facebookStatus === 'draft'}
+		phone={showPhone ? festival.phone : undefined}
+		phoneIsDraft={festival.phoneStatus === 'draft'}
+	/>
 </Base>

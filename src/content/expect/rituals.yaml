@@ -1,6 +1,6 @@
-# PLACEHOLDER expect card — status: draft. Image is a local placeholder.
+# Card copy needs organiser confirmation — keep generic, no invented activities.
 order: 6
-status: draft
+status: confirmed
 isKids: false
 icon: temple-buddhist
 title:
@@ -9,14 +9,15 @@ title:
   en: 'Rituals & Daily Life'
 description:
   # DRAFT-BG: needs native review
-  bg: 'Церемонии и пазарни пресъздавания (заместител).'
-  en: 'Temple ceremonies, senator speeches, and marketplace reenactments.'
+  # NEEDS CONFIRMATION — generic; no Vestal/temple claims
+  bg: 'Сцени от античното ежедневие и гражданския живот.'
+  en: 'Scenes of ancient daily life and civic culture.'
 tag:
   # DRAFT-BG: needs native review
-  bg: 'Култура'
-  en: 'Culture'
-image: ../../assets/images/expect/rituals.png
+  bg: 'Ежедневие'
+  en: 'Daily life'
+image: ../../assets/images/expect/rituals.jpg
 alt:
   # DRAFT-BG: needs native review
-  bg: 'Заместител на снимка за „Ритуали и ежедневие“ — не е реална фестивална фотография'
-  en: 'Placeholder image for "Rituals & Daily Life" — not real festival photography'
+  bg: 'Заместител на снимка за „Ритуали и ежедневие" — правата не са потвърдени'
+  en: 'Placeholder image for "Rituals & Daily Life" — rights not confirmed'

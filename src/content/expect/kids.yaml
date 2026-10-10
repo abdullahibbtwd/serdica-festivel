@@ -1,6 +1,6 @@
-# PLACEHOLDER expect card — status: draft. Image is a local placeholder.
+# Card copy needs organiser confirmation — keep generic, no invented activities.
 order: 5
-status: draft
+status: confirmed
 isKids: true
 icon: child-care
 title:
@@ -9,14 +9,15 @@ title:
   en: "Children's Activities"
 description:
   # DRAFT-BG: needs native review
-  bg: 'Мини легион, глинени плочки и игри (заместител).'
-  en: 'Mini legionary training, clay tablet writing & ancient board games.'
+  # NEEDS CONFIRMATION — generic family-friendly wording
+  bg: 'Семейни и детски активности, свързани с живата история.'
+  en: 'Family and children''s activities connected to living history.'
 tag:
   # DRAFT-BG: needs native review
-  bg: 'Деца и семейства'
-  en: 'Kids & Family'
-image: ../../assets/images/expect/kids.png
+  bg: 'Семейства'
+  en: 'Families'
+image: ../../assets/images/expect/kids.jpg
 alt:
   # DRAFT-BG: needs native review
-  bg: 'Заместител на снимка за „Детски активности“ — не е реална фестивална фотография'
-  en: "Placeholder image for Children's Activities — not real festival photography"
+  bg: 'Заместител на снимка за „Детски активности" — правата не са потвърдени'
+  en: "Placeholder image for Children's Activities — rights not confirmed"

@@ -2,14 +2,19 @@
 import { Icon } from 'astro-icon/components';
 import type { Lang } from '../i18n/ui';
 import { t } from '../i18n/utils';
+import PlaceholderMark from './PlaceholderMark.astro';
 
 interface Props {
 	lang: Lang;
 	email: string;
 	facebook?: string;
+	facebookIsDraft?: boolean;
+	phone?: string;
+	phoneIsDraft?: boolean;
 }
 
-const { lang, email, facebook } = Astro.props;
+const { lang, email, facebook, facebookIsDraft = false, phone, phoneIsDraft = false } = Astro.props;
+const showPhone = Boolean(phone && (!phoneIsDraft || phoneIsDraft));
 ---
 
 <section
@@ -58,6 +63,7 @@ const { lang, email, facebook } = Astro.props;
 								<Icon name="material-symbols:public" aria-hidden="true" />
 								<span class="text-eyebrow uppercase font-bold tracking-wider">
 									{t(lang, 'contact.facebookLabel')}
+									{facebookIsDraft && <PlaceholderMark lang={lang} />}
 								</span>
 							</div>
 							<p class="text-body-sm text-on-surface-variant">{t(lang, 'contact.facebookHint')}</p>
@@ -66,19 +72,23 @@ const { lang, email, facebook } = Astro.props;
 								<Icon name="material-symbols:open-in-new" class="text-sm shrink-0" aria-hidden="true" />
 							</span>
 						</a>
-					) : (
-						<div class="space-y-3 p-6 rounded-lg bg-surface-container-low bronze-border h-full">
-							<div class="flex items-center gap-2 text-secondary">
-								<Icon name="material-symbols:public" aria-hidden="true" />
-								<span class="text-eyebrow uppercase font-bold tracking-wider">
-									{t(lang, 'contact.facebookLabel')}
-								</span>
-							</div>
-							<p class="text-body-sm text-on-surface-variant">{t(lang, 'contact.facebookHint')}</p>
-						</div>
-					)
+					) : null
 				}
 			</div>
+
+			{
+				showPhone && phone && (
+					<div class="mt-6 p-4 rounded-lg bg-surface-container-low bronze-border text-center">
+						<span class="text-eyebrow uppercase text-secondary font-bold tracking-wider">
+							{t(lang, 'contact.phoneLabel')}
+							{phoneIsDraft && <PlaceholderMark lang={lang} />}
+						</span>
+						<a class="block text-headline-sm text-on-surface font-bold mt-1" href={`tel:${phone.replace(/\s/g, '')}`}>
+							{phone}
+						</a>
+					</div>
+				)
+			}
 
 			<div class="mt-8 pt-6 border-t border-outline-variant/30 text-center">
 				<p class="text-body-sm text-on-surface-variant">{t(lang, 'contact.note')}</p>

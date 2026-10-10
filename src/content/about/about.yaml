@@ -1,0 +1,32 @@
+eyebrow:
+  # DRAFT-BG: needs native review
+  bg: 'За нас'
+  en: 'About us'
+title:
+  bg: 'Кои сме ние?'
+  en: 'Who are we?'
+lead:
+  bg: 'Ние сме СНЦ „Сердика Етерна" – общност от любители на историята, обединени от интереса си към Древния Рим и тракийското културно наследство на българските земи.'
+  # EN: needs organiser approval
+  en: 'We are the non-profit association "Serdica Aeterna", a community of history lovers united by an interest in Ancient Rome and the Thracian cultural heritage of the Bulgarian lands.'
+mission:
+  bg: 'Нашата мисия е да съживяваме историята, да пазим културното наследство и да го предаваме нататък – достоверно, увлекателно и с уважение към миналото.'
+  # EN: needs organiser approval
+  en: 'Our mission: to revive history, protect cultural heritage and pass it on, authentically, engagingly and with respect for the past.'
+paragraphs:
+  - bg: 'Вярваме, че историята не е просто сбор от дати и събития, останали в учебниците. Тя е живо наследство, което заслужава да бъде съхранявано, изучавано и предавано на следващите поколения. Нашата цел е да доближим миналото до съвременния човек, като го представяме по възможно най-достоверен, достъпен и увлекателен начин пред широка публика.'
+    # EN: needs organiser approval
+    en: 'We believe history is not just a collection of dates and events left in textbooks. It is living heritage that deserves to be preserved, studied and passed on to the next generations. Our goal is to bring the past closer to modern people by presenting it in the most authentic, accessible and engaging way to a wide audience.'
+  - bg: 'Изцяло на доброволни начала организираме исторически фестивали и събития, чрез които се стремим да съживим света на Древния Рим и местната тракийска култура от времето, когато днешните български земи са били част от Римската империя. За нас е важно да покажем не само римските легионери, техните оръжия, облекло, бит и традиции, но и мястото на тракийската култура в живота на провинциите на империята.'
+    # EN: needs organiser approval
+    en: 'Entirely on a volunteer basis, we organise historical festivals and events that revive the world of Ancient Rome and local Thracian culture from the time when today''s Bulgarian lands were part of the Roman Empire. It matters to us to show not only Roman legionaries, their weapons, clothing, daily life and traditions, but also the place of Thracian culture in the life of the empire''s provinces.'
+  - bg: 'Стремим се да представяме историята с уважение към историческите извори, археологическите находки и научните изследвания, като превръщаме историческата възстановка в средство за образование, културен обмен и съхраняване на паметта.'
+    # EN: needs organiser approval
+    en: 'We present history with respect for historical sources, archaeological finds and scientific research, turning reenactment into a means of education, cultural exchange and preserving memory.'
+  - bg: 'Правим всичко това с личен труд, ентусиазъм и любов към историята. За нас фестивалите не са просто събития, а възможност хора от различни поколения да се докоснат до миналото, да го разберат по-добре и да почувстват връзката между древните цивилизации и земите, на които живеем днес.'
+    # EN: needs organiser approval
+    en: 'We do all this with personal labour, enthusiasm and love of history. For us, festivals are not just events but a chance for people of different generations to touch the past, understand it better and feel the link between ancient civilisations and the land where we live today.'
+image: ../../assets/2025/568945642_25117563577874521_3426376843969852409_n.jpg
+imageAlt:
+  bg: 'Ръчно рисувана карта на Римската империя на фестивала'
+  en: 'Hand-painted map of the Roman Empire at the festival'

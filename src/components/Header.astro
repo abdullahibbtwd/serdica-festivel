@@ -9,15 +9,18 @@ interface Props {
 	lang: Lang;
 	pathname: string;
 	showFreeAdmission?: boolean;
+	showProgramme?: boolean;
 }
 
-const { lang, pathname, showFreeAdmission = false } = Astro.props;
+const { lang, pathname, showFreeAdmission = false, showProgramme = false } = Astro.props;
 
 const links = [
-	{ href: `/${lang}/programme/`, key: 'nav.programme' as const, icon: 'calendar-month' },
-	{ href: `/${lang}/#locations`, key: 'nav.locations' as const, icon: 'explore' },
+	{ href: `/${lang}/#editions`, key: 'nav.editions' as const, icon: 'event-note' },
+	...(showProgramme
+		? [{ href: `/${lang}/programme/`, key: 'nav.programme' as const, icon: 'calendar-month' }]
+		: []),
 	{ href: `/${lang}/#about`, key: 'nav.about' as const, icon: 'history-edu' },
-	{ href: `/${lang}/#gallery`, key: 'nav.gallery' as const, icon: 'photo-library' },
+	{ href: `/${lang}/gallery/`, key: 'nav.gallery' as const, icon: 'photo-library' },
 	{ href: `/${lang}/#partners`, key: 'nav.partners' as const, icon: 'handshake' },
 	{ href: `/${lang}/#contact`, key: 'nav.contact' as const, icon: 'mail' },
 ];

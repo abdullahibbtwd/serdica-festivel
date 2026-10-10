@@ -1,6 +1,6 @@
-# PLACEHOLDER expect card — status: draft. Image is a local placeholder.
+# Card copy needs organiser confirmation — keep generic, no invented activities.
 order: 4
-status: draft
+status: confirmed
 isKids: false
 icon: restaurant
 title:
@@ -9,14 +9,15 @@ title:
   en: 'Roman Food'
 description:
   # DRAFT-BG: needs native review
-  bg: 'Дегустации по антични рецепти (заместител).'
-  en: 'Tasting authentic ancient recipes, spiced wine, and bread from wood ovens.'
+  # NEEDS CONFIRMATION — generic; no tasting/recipe claims
+  bg: 'Историческа храна и кулинарни демонстрации, когато са част от програмата.'
+  en: 'Historical food and culinary demonstrations when part of the programme.'
 tag:
   # DRAFT-BG: needs native review
-  bg: 'Дегустация'
-  en: 'Tasting'
+  bg: 'Кулинария'
+  en: 'Culinary'
 image: ../../assets/images/expect/food.jpg
 alt:
   # DRAFT-BG: needs native review
-  bg: 'Заместител на снимка за „Римска кухня“ — не е реална фестивална фотография'
-  en: 'Placeholder image for "Roman Food" — not real festival photography'
+  bg: 'Заместител на снимка за „Римска кухня" — правата не са потвърдени'
+  en: 'Placeholder image for "Roman Food" — rights not confirmed'

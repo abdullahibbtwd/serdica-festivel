@@ -1,0 +1,119 @@
+year: 2025
+number: 1
+status: past
+name:
+  bg: 'Ulpia Serdica Festival MMXXV'
+  en: 'Ulpia Serdica Festival MMXXV'
+days:
+  - date: '2025-10-17'
+    status: confirmed
+    label:
+      # DRAFT-BG: needs native review
+      bg: 'Ден 1'
+      en: 'Day 1'
+    places:
+      - status: confirmed
+        name:
+          bg: '140. СУ „Иван Богоров", кв. Обеля, София (район „Връбница")'
+          en: '140th School "Ivan Bogorov", Obelya district, Sofia (Vrabnitsa district)'
+        note:
+          # DRAFT-BG: needs native review
+          bg: 'Насочено към деца; домакин е училището.'
+          en: 'Aimed at children; hosted by the school.'
+  - date: '2025-10-18'
+    status: confirmed
+    label:
+      # DRAFT-BG: needs native review
+      bg: 'Ден 2'
+      en: 'Day 2'
+    places:
+      - status: confirmed
+        name:
+          bg: 'Археологически парк „Западна порта на Сердика"'
+          en: 'Western Gate of Serdica Archaeological Park'
+        note:
+          # DRAFT-BG: needs native review
+          bg: 'Триумфален парад от Западната до Източната порта през центъра на града.'
+          en: 'Triumphal parade from the Western Gate to the Eastern Gate through the city centre.'
+summary:
+  # DRAFT-BG: needs native review
+  bg: 'Първо издание — ден за деца в Обеля и парад между портите на антична Сердика.'
+  en: 'First edition — a children’s day in Obelya and a parade between the gates of ancient Serdica.'
+theme:
+  # DRAFT-BG: needs native review
+  bg: 'Края на I в. пр.н.е. — римляни и траки срещу бастарните, включително двубой между Марк Лициний Крас и вожда Делдо.'
+  en: 'Late 1st century BC — Romans and Thracians against the Bastarnae, including a duel between Marcus Licinius Crassus and the chieftain Deldo.'
+visitorActivities:
+  - # DRAFT-BG: needs native review
+    bg: 'Пробване на римски оръжия и шлемове'
+    en: 'Try Roman weapons and helmets'
+  - # DRAFT-BG: needs native review
+    bg: 'Римска храна по автентични рецепти'
+    en: 'Roman food from authentic recipes'
+  - # DRAFT-BG: needs native review
+    bg: 'Антични занаяти за опитване'
+    en: 'Ancient crafts to try'
+  - # DRAFT-BG: needs native review
+    bg: 'Изработка на кожени сандали'
+    en: 'Leather sandal making'
+  - # DRAFT-BG: needs native review
+    bg: 'Обработка на вълна'
+    en: 'Wool processing'
+weatherNote:
+  # DRAFT-BG: needs native review
+  bg: 'Дъжд в първата половина на ден 2.'
+  en: 'Rain in the first half of day 2.'
+stats:
+  participants:
+    value: '~90'
+    status: confirmed
+  countries:
+    value: 6
+    status: confirmed
+    list:
+      # DRAFT-BG: needs native review
+      bg: 'България, Румъния, Италия, Великобритания, Испания, Малта'
+      en: 'Bulgaria, Romania, Italy, UK, Spain, Malta'
+funding:
+  bg: 'Столична община – Програма „Европа" 2025'
+  en: 'Sofia Municipality, Programme Europe 2025'
+partners:
+  - id: serdica-aeterna
+    role: organiser
+  - id: sofia-municipality-europe
+    role: funder
+  - id: sredets-district
+    role: institutional
+  - id: vrabnitsa-district
+    role: institutional
+  - id: school-140-ivan-bogorov
+    role: institutional
+  - id: western-gate-serdica
+    role: institutional
+participatingGroups:
+  - 'Legio I Italica'
+  - 'Gruppo Storico Romano'
+  - 'Romanitas.it'
+  - 'Terra Dacica Aeterna'
+  - 'LudusLupercalis'
+  - 'Grupo Vindicta Recreación Histórica'
+  - 'Ad Putea'
+  - 'Сдружение „Антична Тракия"'
+  - 'Ulpia Pautalia'
+  - 'Legio X Fretensis – Malta'
+media:
+  - outlet: 'Nova TV'
+    status: confirmed
+  - outlet: 'На кафе'
+    status: confirmed
+  - outlet: 'OFFNews'
+    status: confirmed
+  - outlet: 'BulFoto Agency'
+    status: confirmed
+additionalNotes:
+  # DRAFT — street address for Day 1 school venue
+  - status: confirmed
+    text:
+      # DRAFT-BG: needs native review
+      bg: 'Уличен адрес на 140. СУ „Иван Богоров" — предстои потвърждение.'
+      en: 'Street address of 140th School "Ivan Bogorov" — to be confirmed.'
