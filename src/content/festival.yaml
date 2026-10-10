@@ -30,8 +30,14 @@ photographers:
     status: confirmed
   - name: 'Bulgaria ON AIR'
     status: confirmed
-  - name: 'Ladislav Cvetkov'
-    status: confirmed
+  # draft until written permission — legionaries at Serdica metro station, 2025
+  - name: 'Ivan Shishiev'
+    status: draft
+  # draft until written permission
+  - name: 'Ladislav Tsvetkov'
+    status: draft
+  - name: 'Andrey Zakhariyev'
+    status: draft
 hero:
   title:
     bg: 'Ulpia Serdica Festival'

@@ -1,22 +1,16 @@
 ---
 import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
 import type { Lang } from '../i18n/ui';
 import { t } from '../i18n/utils';
-
-interface GalleryItem {
-	id: string;
-	src: ImageMetadata;
-	edition: 2025 | 2026;
-}
+import type { GalleryFilter, GalleryItem } from '../lib/gallery';
 
 interface Props {
 	lang: Lang;
 	items: GalleryItem[];
-	/** preview = home teaser (no filters); full = gallery page with year filters */
+	/** preview = home teaser (no filters); full = gallery page with filters */
 	variant?: 'preview' | 'full';
 	showHeader?: boolean;
-	initialFilter?: 'all' | '2025' | '2026';
+	initialFilter?: GalleryFilter;
 }
 
 const {
@@ -27,9 +21,33 @@ const {
 	initialFilter = 'all',
 } = Astro.props;
 
-const years = [...new Set(items.map((item) => item.edition))].sort((a, b) => b - a);
-const showFilters = variant === 'full' && years.length > 1;
+const years = [...new Set(items.map((item) => item.edition).filter(Boolean))] as Array<
+	2025 | 2026
+>;
+years.sort((a, b) => b - a);
+
+const groupFilters = [
+	...new Map(
+		items
+			.filter((item) => item.group && item.groupLabel)
+			.map((item) => [item.group!, item.groupLabel!] as const),
+	),
+].map(([id, label]) => ({ id, label }));
+
+const filterOptions = [
+	{ id: 'all' as const, label: t(lang, 'gallery.filterAll') },
+	...groupFilters.map((g) => ({ id: g.id, label: g.label })),
+	...years.map((year) => ({ id: String(year), label: String(year) })),
+];
+
+const showFilters = variant === 'full' && filterOptions.length > 1;
 const lightboxId = variant === 'preview' ? 'gallery-lightbox-preview' : 'gallery-lightbox-full';
+
+function itemMatchesFilter(item: GalleryItem, filter: GalleryFilter): boolean {
+	if (filter === 'all') return true;
+	if (filter === '2025' || filter === '2026') return item.edition === Number(filter);
+	return item.group === filter;
+}
 ---
 
 <section
@@ -60,32 +78,19 @@ const lightboxId = variant === 'preview' ? 'gallery-lightbox-preview' : 'gallery
 				<>
 					{showFilters && (
 						<div class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label={t(lang, 'gallery.title')}>
-							<button
-								type="button"
-								class:list={[
-									'gallery-filter px-4 py-2 rounded font-label-sm text-label-sm uppercase tracking-wider font-semibold',
-									initialFilter === 'all'
-										? 'bg-badge-free text-on-background'
-										: 'bronze-border-dark bg-dark-surface text-badge-free hover:bg-[#26231F]',
-								]}
-								data-filter="all"
-								aria-pressed={initialFilter === 'all' ? 'true' : 'false'}
-							>
-								{t(lang, 'gallery.filterAll')}
-							</button>
-							{years.map((year) => (
+							{filterOptions.map((option) => (
 								<button
 									type="button"
 									class:list={[
 										'gallery-filter px-4 py-2 rounded font-label-sm text-label-sm uppercase tracking-wider font-semibold',
-										initialFilter === String(year)
+										initialFilter === option.id
 											? 'bg-badge-free text-on-background'
 											: 'bronze-border-dark bg-dark-surface text-badge-free hover:bg-[#26231F]',
 									]}
-									data-filter={String(year)}
-									aria-pressed={initialFilter === String(year) ? 'true' : 'false'}
+									data-filter={option.id}
+									aria-pressed={initialFilter === option.id ? 'true' : 'false'}
 								>
-									{year}
+									{option.label}
 								</button>
 							))}
 						</div>
@@ -94,12 +99,11 @@ const lightboxId = variant === 'preview' ? 'gallery-lightbox-preview' : 'gallery
 					<ul class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 list-none p-0 m-0">
 						{items.map((item, index) => (
 							<li
-								data-edition={item.edition}
+								data-edition={item.edition ?? ''}
+								data-group={item.group ?? ''}
 								class:list={[
 									'gallery-item',
-									showFilters && initialFilter !== 'all' && String(item.edition) !== initialFilter
-										? 'hidden'
-										: undefined,
+									showFilters && !itemMatchesFilter(item, initialFilter) ? 'hidden' : undefined,
 								]}
 							>
 								<button
@@ -221,9 +225,17 @@ const lightboxId = variant === 'preview' ? 'gallery-lightbox-preview' : 'gallery
 				}
 			});
 
-			function setFilter(year) {
+			function itemMatches(el, filter) {
+				if (filter === 'all') return true;
+				if (filter === '2025' || filter === '2026') {
+					return el.getAttribute('data-edition') === filter;
+				}
+				return el.getAttribute('data-group') === filter;
+			}
+
+			function setFilter(filter) {
 				filters.forEach((btn) => {
-					const active = btn.getAttribute('data-filter') === year;
+					const active = btn.getAttribute('data-filter') === filter;
 					btn.setAttribute('aria-pressed', active ? 'true' : 'false');
 					btn.classList.toggle('bg-badge-free', active);
 					btn.classList.toggle('text-on-background', active);
@@ -232,12 +244,13 @@ const lightboxId = variant === 'preview' ? 'gallery-lightbox-preview' : 'gallery
 					btn.classList.toggle('text-badge-free', !active);
 				});
 				itemsEl.forEach((el) => {
-					const match = year === 'all' || el.getAttribute('data-edition') === year;
-					el.classList.toggle('hidden', !match);
+					el.classList.toggle('hidden', !itemMatches(el, filter));
 				});
 				const url = new URL(window.location.href);
-				if (year === 'all') url.searchParams.delete('year');
-				else url.searchParams.set('year', year);
+				url.searchParams.delete('year');
+				url.searchParams.delete('group');
+				if (filter === '2025' || filter === '2026') url.searchParams.set('year', filter);
+				else if (filter !== 'all') url.searchParams.set('group', filter);
 				history.replaceState({}, '', url);
 			}
 
@@ -246,12 +259,11 @@ const lightboxId = variant === 'preview' ? 'gallery-lightbox-preview' : 'gallery
 			});
 
 			const params = new URLSearchParams(window.location.search);
-			const fromQuery = params.get('year');
-			if (fromQuery === '2025' || fromQuery === '2026') {
-				setFilter(fromQuery);
-			} else if (initialFilter !== 'all') {
-				setFilter(initialFilter);
-			}
+			const fromGroup = params.get('group');
+			const fromYear = params.get('year');
+			if (fromGroup) setFilter(fromGroup);
+			else if (fromYear === '2025' || fromYear === '2026') setFilter(fromYear);
+			else if (initialFilter !== 'all') setFilter(initialFilter);
 		</script>
 	)
 }

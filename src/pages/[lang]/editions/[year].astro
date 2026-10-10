@@ -102,9 +102,6 @@ const notes = (edition.additionalNotes ?? []).filter((n) => isPublishedStatus(n.
 					{countries && (
 						<span class="px-3 py-1 rounded bronze-border text-label-sm font-semibold">
 							{countries.value} {t(lang, 'about.stats.countries')}
-							{countries.list && (
-								<span class="font-normal text-on-surface-variant"> ({countries.list[lang]})</span>
-							)}
 						</span>
 					)}
 					{groupsStat && (

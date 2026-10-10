@@ -1,0 +1,1250 @@
+# needs approval from the legion / Tourism Council – Svishtov
+id: legio-i-italica
+status: draft
+# Internal only — not rendered on the site
+governingBody: 'Tourism Council – Svishtov'
+name:
+  # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+  bg: 'Първи Италийски легион (Legio I Italica P.F.)'
+  en: 'Legio I Italica P.F.'
+shortName:
+  # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+  bg: 'Първи Италийски легион'
+  en: 'Legio I Italica'
+tagline:
+  # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+  bg: 'Римско историческо пресъздаване, свързано с древната крепост Нове край Свищов.'
+  en: 'Roman historical reenactment linked to the ancient fortress of Novae near Svishtov.'
+story:
+  # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+  bg: |
+    Основан през 2005 г., **Първи Италийски легион (Legio I Italica P.F.)** е свързан с древната крепост Нове край Свищов. Участниците пресъздават римските легиони по дунавския лимес — с ръчно изработени доспехи — и представят както военни, така и цивилни персонажи.
+
+    Групата организира фестивала **„Орел на Дунава – Легионите на Мизия“** (Eagle on the Danube – Legions of Moesia) в античния град Улпия Ескус (Гиген). Фестивалът е описван като най-стария античен фестивал в България и на Балканите. Партньори са Регионален исторически музей – Плевен и общините Плевен, Долна Митрополия и Гулянци. През 2026 г. събитието се проведе на 5–7 юни в Рибен, Плевен и Гиген.
+
+    Групата участва и в други фестивали, например Будин (Видин, крепост „Баба Вида“, 29–30 август 2026) и Димум (Белене, септември 2026).
+  en: |
+    Founded in 2005, **Legio I Italica P.F.** is linked to the ancient fortress of Novae near Svishtov. Members recreate the Roman legions on the Danube limes — with handmade armour — and present both military and civilian characters.
+
+    The group organises **Eagle on the Danube – Legions of Moesia** at the ancient city of Ulpia Oescus (Gigen). The festival is described as the oldest ancient festival in Bulgaria and the Balkans. Partners are the Regional Historical Museum – Pleven and the municipalities of Pleven, Dolna Mitropolia and Gulyantsi. In 2026 the event took place on 5–7 June in Riben, Pleven and Gigen.
+
+    The group also takes part in other festivals, for example Budin (Vidin, Baba Vida fortress, 29–30 August 2026) and Dimum (Belene, September 2026).
+facts:
+  - label:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Основан'
+      en: 'Founded'
+    value:
+      bg: '2005'
+      en: '2005'
+  - label:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Фокус'
+      en: 'Focus'
+    value:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Крепост Нове край Свищов; дунавски лимес'
+      en: 'Fortress of Novae near Svishtov; Danube limes'
+  - label:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Организира'
+      en: 'Organises'
+    value:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: '„Орел на Дунава – Легионите на Мизия“, Улпия Ескус (Гиген)'
+      en: 'Eagle on the Danube – Legions of Moesia, Ulpia Oescus (Gigen)'
+  - label:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Орел на Дунава 2026'
+      en: 'Eagle on the Danube 2026'
+    value:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: '5–7 юни · Рибен, Плевен и Гиген'
+      en: '5–7 June · Riben, Pleven and Gigen'
+  - label:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Други фестивали'
+      en: 'Other festivals'
+    value:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Будин (Видин, 29–30 авг. 2026); Димум (Белене, септ. 2026)'
+      en: 'Budin (Vidin, 29–30 Aug 2026); Dimum (Belene, Sept 2026)'
+photos:
+  - src: ../../assets/legiItalia/1.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/2.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/3.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/4.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/5.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/6.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/7.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/8.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/9.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/10.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/11.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/12.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/13.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/14.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/15.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/16.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/17.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/18.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/19.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/20.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/21.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/22.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/23.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/24.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/25.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/26.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/27.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/28.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/29.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/30.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/31.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/32.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/33.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/34.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/35.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/36.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/37.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/38.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/39.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/40.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/41.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/42.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/43.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/44.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/45.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/46.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/47.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/48.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/49.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/50.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/51.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/52.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/53.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/54.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/55.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/56.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/57.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/58.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/59.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/60.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/61.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/62.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/63.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/64.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/65.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/66.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/67.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/68.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/69.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/70.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/71.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/72.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/73.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/74.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/75.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/76.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/77.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/78.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/79.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/80.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/81.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/82.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/83.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/84.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/85.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/86.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/87.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/88.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/89.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/90.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/91.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/92.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/93.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/94.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/95.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/96.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/97.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/98.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/99.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/100.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/101.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/102.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/103.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/104.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/105.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/106.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/107.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/108.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/109.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/110.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/111.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/112.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/113.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/114.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/115.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/116.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/117.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/118.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/119.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/120.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/121.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/121_1.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/122.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/123.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/124.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/125.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/126.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/127.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/128.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/130.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/131.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/132.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/133.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/134.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/135.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/136.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/137.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/138.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/139.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/140.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/141.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/142.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/143.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/144.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/145.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/146.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/147.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/148.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/149.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/150.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/151.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/152.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/153.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/154.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/155.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/156.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/157.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/159.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/160.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/161.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/162.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/163.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/164.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/165.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/166.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/167.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/168.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+  - src: ../../assets/legiItalia/169.jpg
+    alt:
+      # DRAFT-BG: needs approval from the legion / Tourism Council – Svishtov
+      bg: 'Пресъздаватели на Първи Италийски легион'
+      en: 'Legio I Italica reenactors'
+    credit: 'Placeholder — rights not confirmed'
+    rightsConfirmed: false
+links: []
+editions: [2025, 2026]

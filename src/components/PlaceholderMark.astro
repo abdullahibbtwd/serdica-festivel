@@ -1,12 +1,14 @@
 ---
-/**
- * Draft markers intentionally disabled — draft content still follows
- * status / rightsConfirmed gating in production builds.
- */
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import { showDrafts } from '../lib/drafts';
+
 interface Props {
-	lang?: string;
+	lang: Lang;
 	show?: boolean;
 }
 
-void Astro.props;
+const { lang, show = true } = Astro.props;
 ---
+
+{showDrafts() && show && <span class="placeholder-marker">{t(lang, 'placeholder.marker')}</span>}

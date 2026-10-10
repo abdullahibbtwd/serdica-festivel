@@ -1,18 +1,29 @@
 ---
 import type { Lang } from '../i18n/ui';
 import { t } from '../i18n/utils';
+import PlaceholderMark from './PlaceholderMark.astro';
+
+interface GroupCard {
+	name: string;
+	href?: string;
+	isDraft?: boolean;
+}
 
 interface Props {
 	lang: Lang;
-	groups: string[];
+	groups: Array<string | GroupCard>;
 	showFiveCountriesHeading?: boolean;
 }
 
 const { lang, groups, showFiveCountriesHeading = false } = Astro.props;
+
+const cards: GroupCard[] = groups.map((group) =>
+	typeof group === 'string' ? { name: group } : group,
+);
 ---
 
 {
-	groups.length > 0 && (
+	cards.length > 0 && (
 		<section class="py-space-xl lg:py-28 bg-surface-container-low border-y border-outline-variant/40" id="groups">
 			<div class="max-w-7xl mx-auto px-4 md:px-margin">
 				<div class="max-w-2xl mb-12">
@@ -27,9 +38,22 @@ const { lang, groups, showFiveCountriesHeading = false } = Astro.props;
 					)}
 				</div>
 				<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 list-none p-0 m-0">
-					{groups.map((group) => (
-						<li class="bg-surface rounded-lg bronze-border px-4 py-3 text-body-md text-on-surface font-medium ambient-card">
-							{group}
+					{cards.map((group) => (
+						<li class="bg-surface rounded-lg bronze-border text-body-md text-on-surface font-medium ambient-card">
+							{group.href ? (
+								<a
+									class="block px-4 py-3 hover:text-primary transition-colors"
+									href={group.href}
+								>
+									{group.name}
+									{group.isDraft && <PlaceholderMark lang={lang} />}
+								</a>
+							) : (
+								<span class="block px-4 py-3">
+									{group.name}
+									{group.isDraft && <PlaceholderMark lang={lang} />}
+								</span>
+							)}
 						</li>
 					))}
 				</ul>

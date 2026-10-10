@@ -222,6 +222,64 @@ const about = defineCollection({
 		}),
 });
 
+const groups = defineCollection({
+	loader: glob({ pattern: '**/*.{yaml,yml,md}', base: './src/content/groups' }),
+	schema: ({ image }) =>
+		z
+			.object({
+				id: z.string().min(1),
+				name: bilingual,
+				shortName: bilingual,
+				tagline: bilingual,
+				/** Markdown body — both locales required */
+				story: bilingual,
+				facts: z
+					.array(
+						z.object({
+							label: bilingual,
+							value: bilingual,
+						}),
+					)
+					.default([]),
+				photos: z
+					.array(
+						z.object({
+							src: image(),
+							alt: bilingual,
+							credit: z.string().optional(),
+							rightsConfirmed: z.boolean().default(false),
+						}),
+					)
+					.default([]),
+				links: z
+					.array(
+						z.object({
+							label: bilingual,
+							url: z.url(),
+						}),
+					)
+					.default([]),
+				editions: z.array(z.union([z.literal(2025), z.literal(2026)])).min(1),
+				/**
+				 * Internal note only — never rendered on the site.
+				 * e.g. Tourism Council – Svishtov
+				 */
+				governingBody: z.string().min(1).optional(),
+				status,
+			})
+			.superRefine((data, ctx) => {
+				data.photos.forEach((photo, index) => {
+					if (photo.rightsConfirmed && !photo.credit?.trim()) {
+						ctx.addIssue({
+							code: 'custom',
+							message: 'credit is required when rightsConfirmed is true',
+							path: ['photos', index, 'credit'],
+						});
+					}
+				});
+			}),
+});
+
 const festival = defineCollection({
 	loader: glob({ pattern: 'festival.yaml', base: './src/content' }),
 	schema: ({ image }) =>
@@ -262,5 +320,6 @@ export const collections = {
 	expect,
 	editions,
 	about,
+	groups,
 	festival,
 };

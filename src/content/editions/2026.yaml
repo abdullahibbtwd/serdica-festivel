@@ -64,10 +64,7 @@ stats:
   countries:
     value: 5
     status: confirmed
-    list:
-      # DRAFT-BG: needs native review
-      bg: 'България, Румъния, Италия, Великобритания, Испания'
-      en: 'Bulgaria, Romania, Italy, UK, Spain'
+    # Country names draft until confirmed — sources disagree (e.g. Serbia vs UK). Do not list names.
   groups:
     value: 11
     status: confirmed

@@ -9,6 +9,7 @@ import Footer from '../components/Footer.astro';
 import type { Lang } from '../i18n/ui';
 import { getLocalizedPath, t } from '../i18n/utils';
 import { editionStartEnd, type EditionData } from '../lib/editions';
+import { getPublishedGroups } from '../lib/groups';
 
 interface FestivalData {
 	mode: 'between-editions' | 'upcoming';
@@ -39,6 +40,12 @@ const {
 	pastEditions = [],
 	showProgramme = false,
 } = Astro.props;
+
+const groupLinks = (await getPublishedGroups()).map((entry) => ({
+	href: `/${lang}/groups/${entry.data.id}/`,
+	label: entry.data.shortName[lang],
+	isDraft: entry.isDraft,
+}));
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const alternateBg = new URL(getLocalizedPath(Astro.url.pathname, 'bg'), Astro.site);
@@ -137,6 +144,7 @@ const jsonLdGraph = [organizationJsonLd, ...eventJsonLdList];
 			pathname={Astro.url.pathname}
 			showFreeAdmission={festival.admission === 'free' && festival.mode === 'upcoming'}
 			showProgramme={showProgramme}
+			groupLinks={groupLinks}
 		/>
 		<main id="main" class="flex-grow w-full max-w-[100vw] overflow-x-hidden">
 			<slot />
@@ -147,6 +155,7 @@ const jsonLdGraph = [organizationJsonLd, ...eventJsonLdList];
 			email={festival.email}
 			showFreeAdmission={festival.admission === 'free' && festival.mode === 'upcoming'}
 			showProgramme={showProgramme}
+			groupLinks={groupLinks}
 		/>
 	</body>
 </html>

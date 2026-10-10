@@ -70,10 +70,7 @@ stats:
   countries:
     value: 6
     status: confirmed
-    list:
-      # DRAFT-BG: needs native review
-      bg: 'България, Румъния, Италия, Великобритания, Испания, Малта'
-      en: 'Bulgaria, Romania, Italy, UK, Spain, Malta'
+    # Country names draft until confirmed — do not list names.
 funding:
   bg: 'Столична община – Програма „Европа" 2025'
   en: 'Sofia Municipality, Programme Europe 2025'

@@ -5,27 +5,50 @@ import { t } from '../i18n/utils';
 import BrandLogo from './BrandLogo.astro';
 import LangSwitch from './LangSwitch.astro';
 
+interface GroupNavLink {
+	href: string;
+	label: string;
+	isDraft?: boolean;
+}
+
 interface Props {
 	lang: Lang;
 	pathname: string;
 	showFreeAdmission?: boolean;
 	showProgramme?: boolean;
+	groupLinks?: GroupNavLink[];
 }
 
-const { lang, pathname, showFreeAdmission = false, showProgramme = false } = Astro.props;
+const {
+	lang,
+	pathname,
+	showFreeAdmission = false,
+	showProgramme = false,
+	groupLinks = [],
+} = Astro.props;
 
-const links = [
-	{ href: `/${lang}/#editions`, key: 'nav.editions' as const, icon: 'event-note' },
+type NavLink =
+	| { href: string; key: 'nav.editions' | 'nav.programme' | 'nav.about' | 'nav.gallery' | 'nav.partners' | 'nav.contact'; label?: never; icon: string }
+	| { href: string; key?: never; label: string; icon: string };
+
+const links: NavLink[] = [
+	{ href: `/${lang}/#editions`, key: 'nav.editions', icon: 'event-note' },
 	...(showProgramme
 		? [{ href: `/${lang}/programme/`, key: 'nav.programme' as const, icon: 'calendar-month' }]
 		: []),
-	{ href: `/${lang}/#about`, key: 'nav.about' as const, icon: 'history-edu' },
-	{ href: `/${lang}/gallery/`, key: 'nav.gallery' as const, icon: 'photo-library' },
-	{ href: `/${lang}/#partners`, key: 'nav.partners' as const, icon: 'handshake' },
-	{ href: `/${lang}/#contact`, key: 'nav.contact' as const, icon: 'mail' },
+	...groupLinks.map((group) => ({
+		href: group.href,
+		label: group.label,
+		icon: 'groups',
+	})),
+	{ href: `/${lang}/#about`, key: 'nav.about', icon: 'history-edu' },
+	{ href: `/${lang}/gallery/`, key: 'nav.gallery', icon: 'photo-library' },
+	{ href: `/${lang}/#partners`, key: 'nav.partners', icon: 'handshake' },
+	{ href: `/${lang}/#contact`, key: 'nav.contact', icon: 'mail' },
 ];
 
 const isProgramme = pathname.includes('/programme');
+const isGroupPage = pathname.includes('/groups/');
 ---
 
 <header
@@ -51,7 +74,10 @@ const isProgramme = pathname.includes('/programme');
 		<nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label={t(lang, 'nav.ariaLabel')}>
 			{
 				links.map((link) => {
-					const active = link.key === 'nav.programme' && isProgramme;
+					const active =
+						(link.key === 'nav.programme' && isProgramme) ||
+						(Boolean(link.label) && isGroupPage && pathname.startsWith(link.href));
+					const text = link.label ?? t(lang, link.key!);
 					return (
 						<a
 							href={link.href}
@@ -62,7 +88,7 @@ const isProgramme = pathname.includes('/programme');
 									: 'text-on-surface-variant hover:text-primary',
 							]}
 						>
-							{t(lang, link.key)}
+							{text}
 						</a>
 					);
 				})
@@ -124,7 +150,7 @@ const isProgramme = pathname.includes('/programme');
 					href={link.href}
 				>
 					<Icon name={`material-symbols:${link.icon}`} aria-hidden="true" />
-					<span>{t(lang, link.key)}</span>
+					<span>{link.label ?? t(lang, link.key!)}</span>
 				</a>
 			))
 		}

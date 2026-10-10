@@ -4,22 +4,40 @@ import { t } from '../i18n/utils';
 import BrandLogo from './BrandLogo.astro';
 import LangSwitch from './LangSwitch.astro';
 
+interface GroupNavLink {
+	href: string;
+	label: string;
+}
+
 interface Props {
 	lang: Lang;
 	pathname: string;
 	email: string;
 	showFreeAdmission?: boolean;
 	showProgramme?: boolean;
+	groupLinks?: GroupNavLink[];
 }
 
-const { lang, pathname, email, showFreeAdmission = false, showProgramme = false } = Astro.props;
+const {
+	lang,
+	pathname,
+	email,
+	showFreeAdmission = false,
+	showProgramme = false,
+	groupLinks = [],
+} = Astro.props;
 
-const links = [
-	{ href: `/${lang}/#editions`, key: 'nav.editions' as const },
+type FooterLink =
+	| { href: string; key: 'nav.editions' | 'nav.programme' | 'nav.about' | 'nav.gallery' | 'nav.partners'; label?: never }
+	| { href: string; key?: never; label: string };
+
+const links: FooterLink[] = [
+	{ href: `/${lang}/#editions`, key: 'nav.editions' },
 	...(showProgramme ? [{ href: `/${lang}/programme/`, key: 'nav.programme' as const }] : []),
-	{ href: `/${lang}/#about`, key: 'nav.about' as const },
-	{ href: `/${lang}/gallery/`, key: 'nav.gallery' as const },
-	{ href: `/${lang}/#partners`, key: 'nav.partners' as const },
+	...groupLinks.map((group) => ({ href: group.href, label: group.label })),
+	{ href: `/${lang}/#about`, key: 'nav.about' },
+	{ href: `/${lang}/gallery/`, key: 'nav.gallery' },
+	{ href: `/${lang}/#partners`, key: 'nav.partners' },
 ];
 ---
 
@@ -41,7 +59,7 @@ const links = [
 				{
 					links.map((link) => (
 						<a class="text-surface-dim hover:text-surface-bright transition-colors" href={link.href}>
-							{t(lang, link.key)}
+							{link.label ?? t(lang, link.key!)}
 						</a>
 					))
 				}

@@ -1,11 +1,11 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Gallery from '../../../components/Gallery.astro';
 import { isLang, t } from '../../../i18n/utils';
 import type { Lang } from '../../../i18n/ui';
-import { isPublishedRights } from '../../../lib/drafts';
 import { hasPublicProgramme } from '../../../lib/programme';
+import { getGalleryItems, parseGalleryFilter } from '../../../lib/gallery';
 
 export function getStaticPaths() {
 	return [{ params: { lang: 'bg' } }, { params: { lang: 'en' } }];
@@ -24,18 +24,8 @@ if (!festivalEntry) {
 const festival = festivalEntry.data;
 const showProgramme = await hasPublicProgramme();
 
-const yearParam = Astro.url.searchParams.get('year');
-const initialFilter =
-	yearParam === '2025' || yearParam === '2026' ? yearParam : ('all' as const);
-
-const galleryItems = (await getCollection('gallery'))
-	.filter((entry) => isPublishedRights(entry.data.rightsConfirmed))
-	.sort((a, b) => b.data.edition - a.data.edition || a.data.order - b.data.order)
-	.map((entry) => ({
-		id: entry.id,
-		src: entry.data.src,
-		edition: entry.data.edition,
-	}));
+const initialFilter = parseGalleryFilter(Astro.url.searchParams);
+const galleryItems = await getGalleryItems(lang);
 ---
 
 <Base

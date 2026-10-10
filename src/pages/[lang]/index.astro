@@ -12,13 +12,15 @@ import Media from '../../components/Media.astro';
 import Contact from '../../components/Contact.astro';
 import { isLang, t } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { isPublishedRights, isPublishedStatus, showDrafts } from '../../lib/drafts';
+import { isPublishedStatus, showDrafts } from '../../lib/drafts';
 import {
 	confirmedStat,
 	formatEditionDatesCompact,
 	type EditionData,
 } from '../../lib/editions';
 import { hasPublicProgramme } from '../../lib/programme';
+import { getGroupPageHrefByLabel, getPublishedGroups } from '../../lib/groups';
+import { galleryPreviewItems, getGalleryItems } from '../../lib/gallery';
 
 export function getStaticPaths() {
 	return [{ params: { lang: 'bg' } }, { params: { lang: 'en' } }];
@@ -71,18 +73,7 @@ const expectItems = (await getCollection('expect'))
 		isDraft: entry.data.status === 'draft',
 	}));
 
-const allGallery = (await getCollection('gallery'))
-	.filter((entry) => isPublishedRights(entry.data.rightsConfirmed))
-	.sort((a, b) => a.data.order - b.data.order);
-
-const galleryPreview = [
-	...allGallery.filter((e) => e.data.edition === 2026).slice(0, 4),
-	...allGallery.filter((e) => e.data.edition === 2025).slice(0, 4),
-].map((entry) => ({
-	id: entry.id,
-	src: entry.data.src,
-	edition: entry.data.edition,
-}));
+const galleryPreview = galleryPreviewItems(await getGalleryItems(lang));
 
 const partnerEntries = await getCollection('partners');
 
@@ -122,6 +113,20 @@ if (festival.mode === 'upcoming' && festival.nextEdition) {
 	if (next) upcomingDates = formatEditionDatesCompact(next, lang);
 }
 
+const groupHrefByLabel = await getGroupPageHrefByLabel(lang);
+const publishedGroups = await getPublishedGroups();
+const groupDraftByHref = new Map(
+	publishedGroups.map((entry) => [`/${lang}/groups/${entry.data.id}/`, entry.isDraft]),
+);
+const participatingGroupCards = (edition2026?.participatingGroups ?? []).map((name) => {
+	const href = groupHrefByLabel.get(name);
+	return {
+		name,
+		href,
+		isDraft: href ? Boolean(groupDraftByHref.get(href)) : false,
+	};
+});
+
 ---
 
 <Base
@@ -152,10 +157,10 @@ if (festival.mode === 'upcoming' && festival.nextEdition) {
 	{expectItems.length > 0 && <ExpectGrid lang={lang} items={expectItems} />}
 
 	{
-		edition2026?.participatingGroups && edition2026.participatingGroups.length > 0 && (
+		participatingGroupCards.length > 0 && (
 			<ParticipatingGroups
 				lang={lang}
-				groups={edition2026.participatingGroups}
+				groups={participatingGroupCards}
 				showFiveCountriesHeading={Boolean(countriesConfirmed)}
 			/>
 		)
